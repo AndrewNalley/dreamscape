@@ -1,23 +1,27 @@
-const { User, Campaign } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
+const { User, Story, Scene } = require('../models');
 
 const resolvers = {
     Query: {
-        user: async function (parent, args) {
-            if (args.id) {
-                return await User.findById(args.id)
+        me: async function (parent, args, context) {
+            if(context.user) {
+                return User.findOne({ _id: context.user._id })
             }
-            if (context.user) {
-                return await User.findById(context.user.id)
+            throw new AuthentificationError('Must log in!')
+        },
+        communityStories: async function () {
+            return await Story.find()
+        },
+        story: async function (parent, args) {
+            return await Story.findById(args.id)
+        },
+        stories: async function (parent, args, context) {
+            if(context.user) {
+                const user = await User.findOne({ _id: context.user._id })
+                if (user) {
+                    return Story.find({ _id: { $in: user.stories } })
+                }
             }
-        },
-        users: async function () {
-            return await User.find()
-        },
-        campaign: async function (parent, args) {
-            return await Campaign.findById(args.id)
-        },
-        campaigns: async function () {
-            return await Campaign.find()
         },
 
     },

@@ -3,9 +3,9 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     type User {
         _id: ID
-        email: String
+        username: String
         password: String
-        campaigns: [Campaign]
+        stories: [Story]
     }
 
     type Auth {
@@ -13,22 +13,45 @@ const typeDefs = gql`
         user: User
     }
 
-    type Campaign {
-        name: String
-        users: [User]
+    type Story {
+        title: String
+        scenes: [Scene]
+        shared: Boolean
+    }
+
+    type Scene {
+        indexOrder: String
+        imagePath: String
+        text: String
+        audio: String
     }
 
     type Query {
-        user(id: ID!): User
-        users: [User]
-        campaign(id: ID!): Campaign
-        campaigns: [Campaign]
+        me: User
+        communityStories: [Story]
+        story(id: ID!): Story
+        stories: [Story]
     }
 
     type Mutation {
-        addUser(email: String, password: String): Auth
-        createCampaign(name: String!): Campaign
-        updateCampaign(userId: ID!): Campaign
+        createUser(username: String!, password: String!): Auth
+        updateUser(username: String!, password: String!): Auth
+        login(name: String!, password: String!): Auth
+        logout: Boolean
+        createStory(title: String!): Story
+        updateStory(id: ID!): Story
+        createScene(
+            storyId: ID!
+            imagePath: String!
+            text: String
+            audio: String
+            ): Scene
+        updateScene(
+            id: ID!
+            imagePath: String!
+            text: String
+            audio: String
+            ): Scene
     }
 `
 module.exports = typeDefs;
