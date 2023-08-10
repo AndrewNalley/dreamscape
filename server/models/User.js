@@ -1,9 +1,9 @@
 const { Schema, model, Types } = require('mongoose');
 const bcrypt = require('bcrypt');
-const Campaign = require('./Campaign');
+const Story = require('./Story');
 
 const userSchema = new Schema({
-    email: {
+    username: {
         type: String,
         required: true,
         unique: true
@@ -13,9 +13,9 @@ const userSchema = new Schema({
         required: true,
         // set up validation
     },
-    campaigns: [{
+    stories: [{
         type: Types.ObjectId,
-        ref: Campaign
+        ref: Story,
     }]
 });
 
