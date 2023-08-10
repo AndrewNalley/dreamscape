@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 const key = '38637564-c5454e1bc9b01e325fa8d9305'
 
-const PixabaySearch = () => {
+const PhotoAPI = ({searchOption}) => {
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
     const fetchPixabayData = async () => {
       try {
         const response = await fetch(
-          `https://pixabay.com/api/?key=${key}&q=${encodeURIComponent('nature')}&image_type=photo&category=nature+places&safesearch=true`
+          `https://pixabay.com/api/?key=${key}&q=${encodeURIComponent(searchOption)}&image_type=photo&category=nature+places&safesearch=true`
         );
 
         if (!response.ok) {
@@ -29,7 +29,7 @@ const PixabaySearch = () => {
     };
 
     fetchPixabayData();
-  }, []);
+  }, [searchOption]);
 
   return (
     <div>
@@ -47,4 +47,4 @@ const PixabaySearch = () => {
   );
 };
 
-export default PixabaySearch;
+export default PhotoAPI;
