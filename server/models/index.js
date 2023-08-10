@@ -1,4 +1,5 @@
 const User = require('./User');
-const Campaign = require('./Campaign');
+const Story = require('./Story');
+const Scene = require('./Scene');
 
-module.exports = { User, Campaign };
+module.exports = { User, Story, Scene };
