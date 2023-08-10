@@ -37,6 +37,7 @@ function App() {
       
         <>
           <PixabaySearch />
+       
         </>
       </Router>
     </ApolloProvider>
