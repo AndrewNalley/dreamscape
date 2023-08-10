@@ -29,6 +29,24 @@ const Profile = () => {
       }
 
     return (
-        
+        <>
+         <div className='flex-row justify-center'>
+            <h2 className='col-12 col-md-10 bg-dark text-light p-3'>- Welcome `${user.username}` -</h2>
+         </div>
+         <div className='flex-row justify-content-evenly'>
+            <div>
+            <Button variant='primary' size='lg'>CREATE NEW MINDFULNESS JOURNEY</Button>
+            </div>
+            <div>
+                <h3 className='p-3'>DREAMSCAPES</h3>
+                <p>Iterate through Journey's Here</p>
+            </div>
+            <div>
+                <Button variant='primary' size='lg'>VISIT COMMUNITY STORY WELL</Button>
+            </div>
+         </div>
+        </>
     )
 }
+
+export default Profile
