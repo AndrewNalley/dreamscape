@@ -1,3 +1,5 @@
+
+import { BrowserRouter as Router, Routes, Route, Switch  } from 'react-router-dom';
 import logo from './logo.svg';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
@@ -7,6 +9,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import HomePage from './pages/HomePage';
 import PixabaySearch from './utils/API/photoAPI';
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -31,8 +34,10 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+      
         <>
           <PixabaySearch />
+       
         </>
       </Router>
     </ApolloProvider>
