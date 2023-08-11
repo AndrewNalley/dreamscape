@@ -16,14 +16,9 @@ const resolvers = {
         story: async function (parent, args) {
             return await Story.findById(args.id)
         },
-        stories: async function (parent, args, context) {
-            if(context.user) {
-                const user = await User.findOne({ _id: context.user._id })
-                if (user) {
-                    return Story.find({ _id: { $in: user.stories } })
-                }
-            }
-        },
+        scene: async function (parent, args) {
+            return await Scene.findById(args.id)
+        }
 
     },
     Mutation: {
