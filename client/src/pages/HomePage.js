@@ -48,8 +48,16 @@ const HomePage = () => {
   Imagine escaping to a tranquil paradise, where the worries of everyday life fade away and serenity takes over. Welcome to Dreamscape, a place where you can truly unwind, recharge, and find inner peace amidst the beauty of nature.
   </div>
 </div>
-       
 <Link to="/signUp">New To Dreamscape Sing Up today</Link>
+<Link to="/storyWell">storyWell</Link>
+<Link to="/visual">visual</Link>
+<Link to="/text">text</Link>
+<Link to="/scene">scene</Link>
+<Link to="/Profile">Profile</Link>
+<Link to="/Preview">Preview</Link>
+<Link to="/DreamForge">DreamForge</Link>     
+<Link to="/Demo">Demo</Link>
+<Link to="/Audio">Audio</Link>
 
 
 

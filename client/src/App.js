@@ -1,6 +1,17 @@
 
-import { BrowserRouter as Router, Routes, Route, Switch  } from 'react-router-dom';
-import logo from './logo.svg';
+import HomePage from './pages/HomePage';
+import StoryWell from './pages/StoryWell'
+import Scene from './pages/Scene'
+import Profile from './pages/Profile'
+import Preview from './pages/Preview'
+import DreamForge from "./pages/DreamForge"
+import Audio from "./pages/Audio"
+import Demo from "./pages/Demo"
+import SignUp from './pages/SignUp';
+import Text from './pages/Text'
+import Visual from "./pages/Visual"
+
+import { BrowserRouter as Router} from 'react-router-dom';
 
 import {
   ApolloClient,
@@ -17,8 +28,8 @@ import {
 
 
 import { setContext } from "@apollo/client/link/context";
-import HomePage from './pages/HomePage';
-import SignUp from "./pages/SignUp"
+
+
 import PixabaySearch from './utils/API/photoAPI';
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -49,7 +60,43 @@ const router = createBrowserRouter([
 {
   path:"signUp",
   element: <SignUp/>
-}
+},
+{
+  path:"storyWell",
+  element: <StoryWell />
+},
+{
+  path:"visual",
+  element: <Visual />
+},
+{
+  path:"text",
+  element: <Text />
+},
+{
+  path:"scene",
+  element:<Scene />
+},
+{
+  path: "Profile",
+  element: <Profile />
+},
+{
+  path:"Preview",
+  element: <Preview />
+},
+{
+  path: "DreamForge",
+  element: <DreamForge />
+},
+{
+  path:"Demo",
+  element: <Demo />
+},
+{
+  path:"Audio",
+  element: <Audio />
+},
 
 ])
 
@@ -60,5 +107,6 @@ function App() {
     </ApolloProvider>
   );
 }
+
 
 export default App;
