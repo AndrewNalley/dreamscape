@@ -1,6 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import { BrowserRouter as Router} from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -33,7 +32,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          <HomePage />
+          <HomePage  />
         </>
       </Router>
     </ApolloProvider>
