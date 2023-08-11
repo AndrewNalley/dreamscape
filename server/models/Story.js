@@ -8,7 +8,7 @@ const storySchema = new Schema({
     },
     scenes: [{
         type: Types.ObjectId,
-        ref: Scene,
+        ref: 'Scene',
         required: true,
     }],
     shared: {
