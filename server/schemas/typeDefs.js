@@ -21,6 +21,7 @@ const typeDefs = gql`
 
     type Scene {
         _id: ID
+        storyId: ID
         indexOrder: String
         imagePath: String
         text: String
@@ -31,7 +32,7 @@ const typeDefs = gql`
         me: User
         communityStories: [Story]
         story(id: ID!): Story
-        stories: [Story]
+        scene(id: ID!): Scene
     }
 
     type Mutation {

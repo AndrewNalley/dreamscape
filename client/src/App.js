@@ -6,7 +6,16 @@ import {
   ApolloProvider, 
   createHttpLink,
 } from "@apollo/client";
+import {
+  createBrowserRouter,
+  RouterProvider,
+
+  Link,
+} from "react-router-dom";
+
+
 import { setContext } from "@apollo/client/link/context";
+
 import HomePage from './pages/HomePage';
 import StoryWell from './pages/StoryWell'
 import Scene from './pages/Scene'
@@ -18,6 +27,10 @@ import Demo from "./pages/Demo"
 import SignUp from './pages/SignUp';
 import Text from './pages/Text'
 import Visual from "./pages/Visual"
+
+
+
+
 import PixabaySearch from './utils/API/photoAPI';
 
 import {
@@ -96,22 +109,64 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: 
+      <HomePage />
+
+    
+  },
+{
+  path:"signUp",
+  element: <SignUp/>
+},
+{
+  path:"storyWell",
+  element: <StoryWell />
+},
+{
+  path:"visual",
+  element: <Visual />
+},
+{
+  path:"text",
+  element: <Text />
+},
+{
+  path:"scene",
+  element:<Scene />
+},
+{
+  path: "Profile",
+  element: <Profile />
+},
+{
+  path:"Preview",
+  element: <Preview />
+},
+{
+  path: "DreamForge",
+  element: <DreamForge />
+},
+{
+  path:"Demo",
+  element: <Demo />
+},
+{
+  path:"Audio",
+  element: <Audio />
+},
+
+])
 
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-      
-        <>
-
-          <HomePage  />
-
-          <PixabaySearch />
-
-        </>
-      </Router>
+      <RouterProvider router={router} />
     </ApolloProvider>
   );
 }
+
 
 export default App;
