@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 // import { LOGIN_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
@@ -39,28 +39,36 @@ import Auth from '../utils/auth';
 // };
 const HomePage = () => {
   return (
+
     <>
       <div style={{ backgroundColor: "#872657", paddingBottom: "455px" }}>
         <h1 className='d-flex justify-content-center'>DREAMSCAPE</h1>
-        <div class="card">
-  <div class="card-body">
+        <div className="card">
+  <div className="card-body">
   Imagine escaping to a tranquil paradise, where the worries of everyday life fade away and serenity takes over. Welcome to Dreamscape, a place where you can truly unwind, recharge, and find inner peace amidst the beauty of nature.
   </div>
 </div>
-        {/* <p className='d-flex justify-content-center text-info bg-dark m-3'>
-          Imagine escaping to a tranquil paradise, where the worries of everyday life fade away and serenity takes over. Welcome to Dreamsacpe, a place where you can truly unwind, recharge, and find inner peace amidst the beauty of nature.</p> */}
-
+<Link to="/signUp">New To Dreamscape Sing Up today</Link>
+<Link to="/storyWell">storyWell</Link>
+<Link to="/visual">visual</Link>
+<Link to="/text">text</Link>
+<Link to="/scene">scene</Link>
+<Link to="/Profile">Profile</Link>
+<Link to="/Preview">Preview</Link>
+<Link to="/DreamForge">DreamForge</Link>     
+<Link to="/Demo">Demo</Link>
+<Link to="/Audio">Audio</Link>
 
 
 
         <form className=' align-self-center '>
           <h3 className="m-3">Login</h3>
-          <p>Email</p>
+          <p>User name</p>
           <input
             className="form-input d-flex flex-column m-3 "
-            placeholder="Your email"
+            placeholder="User name"
             name="email"
-            type="email" />
+           />
           <p>Password</p>
           <input
             className="form-input m-3"
