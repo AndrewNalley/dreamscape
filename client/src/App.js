@@ -1,7 +1,7 @@
 
-import { BrowserRouter as Router, Routes, Route, Switch  } from 'react-router-dom';
-import logo from './logo.svg';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import { BrowserRouter as Router} from 'react-router-dom';
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -36,8 +36,11 @@ function App() {
       <Router>
       
         <>
+
+          <HomePage  />
+
           <PixabaySearch />
-       
+
         </>
       </Router>
     </ApolloProvider>
