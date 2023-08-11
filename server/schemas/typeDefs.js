@@ -4,7 +4,6 @@ const typeDefs = gql`
     type User {
         _id: ID
         username: String
-        password: String
         stories: [Story]
     }
 
@@ -14,12 +13,14 @@ const typeDefs = gql`
     }
 
     type Story {
+        _id: ID
         title: String
         scenes: [Scene]
         shared: Boolean
     }
 
     type Scene {
+        _id: ID
         indexOrder: String
         imagePath: String
         text: String
