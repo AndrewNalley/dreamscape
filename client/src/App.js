@@ -1,7 +1,7 @@
 
 import { BrowserRouter as Router, Routes, Route, Switch  } from 'react-router-dom';
 import logo from './logo.svg';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -10,6 +10,7 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import HomePage from './pages/HomePage';
+import SignUp from "./pages/SignUp"
 import PixabaySearch from './utils/API/photoAPI';
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -33,13 +34,16 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-      
+      {/* <Router> */}
+        {/* <Routes> */}
+        {/* <Route  path='/signUp' element={<SignUp}/> */}
+        {/* </Routes> */}
         <>
-          <PixabaySearch />
-       
+          {/* <PixabaySearch /> */}
+       < HomePage />
+       {/* <SignUp /> */}
         </>
-      </Router>
+      {/* </Router> */}
     </ApolloProvider>
   );
 }
