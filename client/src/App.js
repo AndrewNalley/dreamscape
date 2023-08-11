@@ -8,6 +8,14 @@ import {
   ApolloProvider, 
   createHttpLink,
 } from "@apollo/client";
+import {
+  createBrowserRouter,
+  RouterProvider,
+
+  Link,
+} from "react-router-dom";
+
+
 import { setContext } from "@apollo/client/link/context";
 import HomePage from './pages/HomePage';
 import SignUp from "./pages/SignUp"
@@ -30,20 +38,25 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: 
+      <HomePage />
+
+    
+  },
+{
+  path:"signUp",
+  element: <SignUp/>
+}
+
+])
 
 function App() {
   return (
     <ApolloProvider client={client}>
-      {/* <Router> */}
-        {/* <Routes> */}
-        {/* <Route  path='/signUp' element={<SignUp}/> */}
-        {/* </Routes> */}
-        <>
-          {/* <PixabaySearch /> */}
-       < HomePage />
-       {/* <SignUp /> */}
-        </>
-      {/* </Router> */}
+      <RouterProvider router={router} />
     </ApolloProvider>
   );
 }
