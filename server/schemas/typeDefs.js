@@ -45,8 +45,8 @@ const typeDefs = gql`
             text: String
             audio: String
             ): Scene
-        removeStory(storyId: ID!): Story
-        removeScene(sceneId: ID!, storyId: ID!): Scene
+        removeStory(storyId: ID!): User
+        removeScene(sceneId: ID!): Story
     }
 `
 module.exports = typeDefs;
