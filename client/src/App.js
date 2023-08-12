@@ -33,63 +33,7 @@ import Visual from "./pages/Visual"
 
 import PixabaySearch from './utils/API/photoAPI';
 
-import {
-  createBrowserRouter,
-  RouterProvider,
 
-  Link,
-} from "react-router-dom";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: 
-      <HomePage />
-
-
-  },
-{
-  path:"signUp",
-  element: <SignUp/>
-},
-{
-  path:"storyWell",
-  element: <StoryWell />
-},
-{
-  path:"visual",
-  element: <Visual />
-},
-{
-  path:"text",
-  element: <Text />
-},
-{
-  path:"scene",
-  element:<Scene />
-},
-{
-  path: "Profile",
-  element: <Profile />
-},
-{
-  path:"Preview",
-  element: <Preview />
-},
-{
-  path: "DreamForge",
-  element: <DreamForge />
-},
-{
-  path:"Demo",
-  element: <Demo />
-},
-{
-  path:"Audio",
-  element: <Audio />
-},
-
-])
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -164,6 +108,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <RouterProvider router={router} />
+   
     </ApolloProvider>
   );
 }

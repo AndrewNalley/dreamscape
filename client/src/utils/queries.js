@@ -48,3 +48,14 @@ export const GET_SCENE = gql`
             audio
         }
     }`
+
+    export const QUERY_USER = gql`
+    query user($username: String!) {
+      user(username: $username) {
+        _id
+        username
+        email
+     
+        
+      }
+    }`

@@ -6,7 +6,7 @@ import { CREATE_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
-const SignUp = () => {
+const SignUp = (props) => {
   const [formState, setFormState] = useState({
     username: '',
    
@@ -47,7 +47,7 @@ const SignUp = () => {
             {data ? (
               <p>
                 Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
+                <Link to="/Profile">Go to Profile.</Link>
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>

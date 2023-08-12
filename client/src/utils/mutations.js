@@ -12,7 +12,7 @@ export const CREATE_USER = gql`
     }`
 
 export const UPDATE_USER = gql`
-    mutation updateUser(username: String!, password: String!) {
+    mutation updateUser($username: String!, $password: String!) {
         updateUser(username: $username, password: $password) {
             user {
                 _id
@@ -89,3 +89,4 @@ export const CREATE_SCENE = gql`
             audio
         }
     }`
+
