@@ -17,7 +17,6 @@ export const GET_COMMUNAL = gql`
         stories {
             _id
             title
-            shared
         }
     }`
 

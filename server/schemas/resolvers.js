@@ -6,18 +6,18 @@ const resolvers = {
     Query: {
         me: async function (parent, args, context) {
             if(context.user) {
-                return User.findOne({ _id: context.user._id })
+                return User.findOne({ _id: context.user._id }).populate('stories')
             }
-            throw new AuthentificationError('Must log in!')
+            throw new AuthenticationError('Must log in!')
         },
         communityStories: async function () {
-            return await Story.find()
+            return await Story.find({ shared: true })
         },
         story: async function (parent, args) {
-            return await Story.findById(args.id)
+            return await Story.findById(args.storyId).populate('scenes')
         },
         scene: async function (parent, args) {
-            return await Scene.findById(args.id)
+            return await Scene.findById(args.sceneId)
         }
 
     },
@@ -26,13 +26,6 @@ const resolvers = {
             const user = await User.create(args)
             const token = signToken(user)
             return { token, user }
-        },
-        updateUser: async function (parent, args, context) { 
-            return await User.findOneAndUpdate(
-                { _id: context.user._id },
-                args,
-                { new: true }
-            )
         },
         login: async function (parent, { username, password }) { 
             const user = await User.findOne({ username })
@@ -52,32 +45,46 @@ const resolvers = {
         },
         createStory: async function (parent, args, context) {
             const story = await Story.create(args) // do same here as below
-            await User.findByIdAndUpdate(context.user._id, { $push: { stories: story._id } }, { new: true })
+            await User.findByIdAndUpdate(
+                context.user._id,
+                { $addToSet: { stories: story._id } }, 
+                { new: true })
             return story
-        },
-        updateStory: async function (parent, args) { 
-            return await Story.findOneAndUpdate(
-                { _id: args._id },
-                args,
-                { new: true }
-            )
         },
         createScene: async function (parent, args) { 
             const scene = await Scene.create(args)
 
             await Story.findOneAndUpdate(
                 { _id: args.storyId },
-                { $push: { scenes: scene._id }},
+                { $addToSet: { scenes: scene._id }},
                 { new: true }
             )
+
+            return scene
         },
-        updateScene: async function (parent, args) { 
-            return await Scene.findOneAndUpdate(
-                { _id: args._id },
-                args,
-                { new: true }
+        removeStory: async function (parent, args, context) {
+            await Story.findOneAndDelete({_id: args.storyId})
+            
+            await Scene.deleteMany({ storyId: args.storyId })
+
+            const user = await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $pull: { stories: args.storyId}}
             )
+
+            return user
         },
+        removeScene: async function (parent, args) {
+            const scene = await Scene.findOneAndDelete({_id: args.sceneId})
+
+            const story = await Story.findOneAndUpdate(
+                { _id: scene.storyId },
+                { $pull: { scenes: args.sceneId}}
+            )
+
+            return story
+        }
+        
 
     }
 }

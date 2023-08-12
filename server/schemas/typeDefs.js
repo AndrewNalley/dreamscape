@@ -31,28 +31,22 @@ const typeDefs = gql`
     type Query {
         me: User
         communityStories: [Story]
-        story(id: ID!): Story
-        scene(id: ID!): Scene
+        story(storyId: ID!): Story
+        scene(sceneId: ID!): Scene
     }
 
     type Mutation {
         createUser(username: String!, password: String!): Auth
-        updateUser(username: String!, password: String!): Auth
         login(name: String!, password: String!): Auth
         createStory(title: String!): Story
-        updateStory(id: ID!): Story
         createScene(
             storyId: ID!
             imagePath: String!
             text: String
             audio: String
             ): Scene
-        updateScene(
-            id: ID!
-            imagePath: String!
-            text: String
-            audio: String
-            ): Scene
+        removeStory(storyId: ID!): User
+        removeScene(sceneId: ID!): Story
     }
 `
 module.exports = typeDefs;
