@@ -14,7 +14,7 @@ const resolvers = {
             return await Story.find()
         },
         story: async function (parent, args) {
-            return await Story.findById(args.id)
+            return await Story.findById(args.id).populate('scenes')
         },
         scene: async function (parent, args) {
             return await Scene.findById(args.id)
