@@ -2,6 +2,7 @@ import React from 'react'
 // import { Navigate, useParams } from 'react-router-dom'
 // import { useQuery } from '@apollo/client'
 // import { Button } from 'react-bootstrap'
+import { GET_ME } from '../utils/queries'
 
 import Auth from '../utils/auth'
 
@@ -31,7 +32,7 @@ const Profile = () => {
 
     return (
         <>
-         <div className='d-flex flex-row justify-content-center m-10'>
+         <div className='d-flex flex-row justify-content-center'>
             <h2 className=''>- Welcome User -</h2>
          </div>
          <div className='d-flex flex-row justify-content-around'>
