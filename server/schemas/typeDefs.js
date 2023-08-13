@@ -39,7 +39,7 @@ const typeDefs = gql`
         createUser(username: String!, password: String!): Auth
         updateUser(username: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
-        login(name: String!, password: String!): Auth
+       
         createStory(title: String!): Story
         createScene(
             storyId: ID!

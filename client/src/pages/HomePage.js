@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../utils/mutations';
 
@@ -32,13 +32,18 @@ const handleFormSubmit = async (event) => {
   } catch (e) {
     console.error(e);
   }
-
+  
   // clear form values
   setFormState({
     username: '',
     password: '',
   });
 };
+const logout = (event) => {
+  event.preventDefault();
+  Auth.logout();
+}
+
 
   return (
 
@@ -69,8 +74,8 @@ const handleFormSubmit = async (event) => {
 
 {data ? (
               <p>
-                Success! You may now head{' '}
-                <Link to="/Profile">Go to Profile.</Link>
+                Success! You may now head{  <Navigate to='/Profile' />}
+              
               </p>
             ) :(
 
@@ -105,6 +110,26 @@ const handleFormSubmit = async (event) => {
 
 
         </form>)}
+        
+           <div>
+           {Auth.loggedIn() ? (
+            <>
+              <Link className="btn btn-lg btn-info m-2" to="/Profile">
+                {Auth.getProfile().data.username}'s profile
+              </Link>
+              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link className="btn btn-lg btn-info m-2" to="/">
+                HomePage
+              </Link>
+              </>
+          )}
+            </div>     
+        
       </div>
      
 
