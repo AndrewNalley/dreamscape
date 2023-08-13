@@ -12,12 +12,15 @@ const resolvers = {
         },
         me: async function (parent, args, context) {
             if(context.user) {
-                return User.findOne({ _id: context.user._id }).populate('stories')
+                return User.findOne({ _id: context.user._id }).populate('stories').populate({
+                    path: 'stories',
+                    populate: 'scenes'
+                })
             }
             throw new AuthenticationError('Must log in!')
         },
         communityStories: async function () {
-            return await Story.find({ shared: true })
+            return await Story.find({ shared: true }).populate('scenes')
         },
         story: async function (parent, args) {
             return await Story.findById(args.storyId).populate('scenes')
