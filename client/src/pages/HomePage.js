@@ -1,43 +1,50 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-// import { LOGIN_USER } from '../utils/mutations';
+import { LOGIN } from '../utils/mutations';
 
 import Auth from '../utils/auth';
-// const [formState, setFormState] = useState({ email: '', password: '' });
-// const [login, { error, data }] = useMutation(LOGIN_USER);
 
-// // update state based on form input changes
-// const handleChange = (event) => {
-//   const { name, value } = event.target;
+const HomePage = (props) => {
+const [formState, setFormState] = useState({ username: '', password: '' });
+const [login, { error, data }] = useMutation(LOGIN);
 
-//   setFormState({
-//     ...formState,
-//     [name]: value,
-//   });
-// };
+// update state based on form input changes
+const handleChange = (event) => {
+  const { name, value } = event.target;
 
-// // submit form
-// const handleFormSubmit = async (event) => {
-//   event.preventDefault();
-//   console.log(formState);
-//   try {
-//     const { data } = await login({
-//       variables: { ...formState },
-//     });
+  setFormState({
+    ...formState,
+    [name]: value,
+  });
+};
 
-//     Auth.login(data.login.token);
-//   } catch (e) {
-//     console.error(e);
-//   }
+// submit form
+const handleFormSubmit = async (event) => {
+  event.preventDefault();
+  console.log(formState);
+  try {
+    const { data } = await login({
+      variables: { ...formState },
+    });
 
-//   // clear form values
-//   setFormState({
-//     email: '',
-//     password: '',
-//   });
-// };
-const HomePage = () => {
+    Auth.login(data.login.token);
+  } catch (e) {
+    console.error(e);
+  }
+  
+  // clear form values
+  setFormState({
+    username: '',
+    password: '',
+  });
+};
+const logout = (event) => {
+  event.preventDefault();
+  Auth.logout();
+}
+
+
   return (
 
     <>
@@ -48,6 +55,7 @@ const HomePage = () => {
   Imagine escaping to a tranquil paradise, where the worries of everyday life fade away and serenity takes over. Welcome to Dreamscape, a place where you can truly unwind, recharge, and find inner peace amidst the beauty of nature.
   </div>
 </div>
+
 
         {/* <p className='d-flex justify-content-center text-info bg-dark m-3'>
           Imagine escaping to a tranquil paradise, where the worries of everyday life fade away and serenity takes over. Welcome to Dreamsacpe, a place where you can truly unwind, recharge, and find inner peace amidst the beauty of nature.</p> */}
@@ -64,22 +72,32 @@ const HomePage = () => {
 <Link to="/Demo">Demo</Link>
 <Link to="/Audio">Audio</Link>
 
+{data ? (
+              <p>
+                Success! You may now head{  <Navigate to='/Profile' />}
+              
+              </p>
+            ) :(
 
-
-        <form className=' align-self-center '>
+        <form className=' align-self-center ' onSubmit={handleFormSubmit}>
           <h3 className="m-3">Login</h3>
           <p>User name</p>
           <input
             className="form-input d-flex flex-column m-3 "
             placeholder="User name"
-            name="email"
+            name="username"
+            type="text"
+            value={formState.name}
+            onChange={handleChange}
            />
           <p>Password</p>
           <input
             className="form-input m-3"
             placeholder="******"
             name="password"
-            type="password" />
+            type="password" 
+            value={formState.password}
+            onChange={handleChange} />
 
           <button
             className="btn btn-block btn-primary"
@@ -91,7 +109,27 @@ const HomePage = () => {
      
 
 
-        </form>
+        </form>)}
+        
+           <div>
+           {Auth.loggedIn() ? (
+            <>
+              <Link className="btn btn-lg btn-info m-2" to="/Profile">
+                {Auth.getProfile().data.username}'s profile
+              </Link>
+              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link className="btn btn-lg btn-info m-2" to="/">
+                HomePage
+              </Link>
+              </>
+          )}
+            </div>     
+        
       </div>
      
 

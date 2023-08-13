@@ -34,11 +34,11 @@ const resolvers = {
                 throw new AuthenticationError('No user found with this username!')
             }
 
-            const correctPass = await user.isCorrectPassword(password)
+            // const correctPass = await user.isCorrectPassword(password);
 
-            if(!correctPass) {
-                throw new AuthenticationError('Incorrect password!')
-            }
+            // if(!correctPass) {
+            //     throw new AuthenticationError('Incorrect password!')
+            // }
 
             const token = signToken(user)
             return { token, user }

@@ -79,3 +79,4 @@ export const REMOVE_SCENE = gql`
             shared
         }
     }`
+
