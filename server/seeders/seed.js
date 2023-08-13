@@ -35,7 +35,9 @@ db.once('open', async () => {
         await User.deleteMany({});
         const createdUsers = await User.create(users);
 
-        story.user = createdUsers[0]._id;
+        story.forEach(storyOb => {
+            storyOb.user = createdUsers[0]._id; // Use the _id of the first user
+        });
         const createdStory = await Story.create(story);
 
         createdUsers[0].stories.push(createdStory._id); // Add the story's _id to the user's stories array
@@ -45,10 +47,10 @@ db.once('open', async () => {
         for (const scene of scenes) {
             const createdScene = await Scene.create({
                 ...scene,
-                storyId: createdStory._id
+                storyId: createdStory[0]._id
             });
-            createdStory.scenes.push(createdScene._id);
-            await createdStory.save();
+            createdStory[0].scenes.push(createdScene._id);
+            await createdStory[0].save();
         }
 
         console.log('Seeding completed successfully.');
