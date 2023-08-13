@@ -15,6 +15,7 @@ const typeDefs = gql`
     type Story {
         _id: ID
         title: String
+        user: ID
         scenes: [Scene]
         shared: Boolean
     }
