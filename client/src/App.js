@@ -78,7 +78,7 @@ const router = createBrowserRouter([
   element: <Text />
 },
 {
-  path:"scene",
+  path:"scene/:sceneId",
   element:<Scene />
 },
 {

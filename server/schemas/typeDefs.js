@@ -34,6 +34,8 @@ const typeDefs = gql`
         communityStories: [Story]
         story(storyId: ID!): Story
         scene(sceneId: ID!): Scene
+        allUsers: [User]
+        allStory : [Story]
     }
 
     type Mutation {
@@ -41,7 +43,7 @@ const typeDefs = gql`
         updateUser(username: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
        
-        createStory(title: String!): Story
+        createStory(title: String! user:ID!): Story
         createScene(
             storyId: ID!
             imagePath: String!
