@@ -1,9 +1,10 @@
 import React from 'react'
 import UserJourneys from '../components/UserJourneys'
-// import { useQuery } from '@apollo/client'
 // import { Button } from 'react-bootstrap'
 import { GET_ME, QUERY_USER, GET_STORY } from '../utils/queries'
 import { useQuery } from '@apollo/client';
+import { CREATE_STORY } from '../utils/mutations'
+import { useMutation } from '@apollo/client'
 import { Link, Navigate, useParams } from 'react-router-dom';
 
 import Auth from '../utils/auth'
@@ -23,9 +24,9 @@ const Profile = () => {
 
     const user =data?.me || data?.user || {}
     console.log(user)
-    if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-        return <Navigate to='/Profile' />
-    }
+    // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    //     return <Navigate to='/Profile' />
+    // }
 
     if (loading) {
         return <div>Loading...</div>;
