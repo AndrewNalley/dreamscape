@@ -26,6 +26,7 @@ const typeDefs = gql`
         indexOrder: String
         imagePath: String
         text: String
+        
     }
 
     type Query {
@@ -34,6 +35,8 @@ const typeDefs = gql`
         communityStories: [Story]
         story(storyId: ID!): Story
         scene(sceneId: ID!): Scene
+        allUsers: [User]
+        allStory : [Story]
     }
 
     type Mutation {

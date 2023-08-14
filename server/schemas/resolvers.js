@@ -27,7 +27,16 @@ const resolvers = {
         },
         scene: async function (parent, args) {
             return await Scene.findById(args.sceneId)
-        }
+        },
+        allUsers:async function(parent, args){
+            return await User.find({})
+         },
+         allStory:async function(parent, args){
+            return await Story.find({})
+         }
+            
+
+            
 
     },
     Mutation: {

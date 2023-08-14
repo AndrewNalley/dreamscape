@@ -21,8 +21,8 @@ export const GET_COMMUNAL = gql`
     }`
 
 export const GET_STORY = gql`
-    query story($id: ID!) {
-        story(id: $id) {
+    query story($storyId: ID!) {
+        story(storyId: $storyId) {
             _id
             title
             scenes {
@@ -31,20 +31,20 @@ export const GET_STORY = gql`
                 indexOrder
                 imagePath
                 text
-                audio
+                
             }
         }
     }`
 
 export const GET_SCENE = gql`
-    query scene($id: ID!) {
-        scene(id: $id) {
+    query scene($sceneId: ID!) {
+        scene(sceneId:  $sceneId) {
             _id
             storyId
             indexOrder
             imagePath
             text
-            audio
+            
         }
     }`
 
