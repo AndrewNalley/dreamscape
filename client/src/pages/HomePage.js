@@ -22,15 +22,15 @@ const handleChange = (event) => {
 // submit form
 const handleFormSubmit = async (event) => {
   event.preventDefault();
-  console.log(formState);
+  // console.log(formState);
   try {
     const { data } = await login({
       variables: { ...formState },
     });
 
     Auth.login(data.login.token);
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
   }
   
   // clear form values
@@ -110,7 +110,7 @@ const logout = (event) => {
             placeholder="User name"
             name="username"
             type="text"
-            value={formState.name}
+            value={formState.username}
             onChange={handleChange}
            />
           <p>Password</p>
