@@ -10,7 +10,7 @@ import Auth from '../utils/auth'
 
 const linkStyle = {
   textDecoration: 'none',
-  color: 'dark',
+  color: 'black',
 }
 
 const Profile = () => {
@@ -47,7 +47,7 @@ const Profile = () => {
          </div>
          <div className='d-flex flex-row justify-content-around mt-4'>
             <div className='d-flex align-self-center w-25 p-4'>
-            <Link style={linkStyle} to='DreamForge'><div className='rounded-circle bg-primary '>CREATE NEW MINDFULNESS JOURNEY</div></Link>
+            <Link style={linkStyle} to='/dreamforge'><div className='rounded-circle bg-primary '>CREATE NEW MINDFULNESS JOURNEY</div></Link>
             </div>
             <div>
                 <h3 className='p-3 shadow-lg w-auto card h-100'>DREAMSCAPES</h3>

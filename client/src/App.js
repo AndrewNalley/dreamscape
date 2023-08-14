@@ -70,7 +70,7 @@ const router = createBrowserRouter([
   element: <Preview />
 },
 {
-  path: "DreamForge",
+  path: "/dreamforge",
   element: <DreamForge />
 },
 {
