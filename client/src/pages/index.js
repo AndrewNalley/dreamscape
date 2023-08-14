@@ -1,8 +1,6 @@
 export { default as Audio } from './Audio';
-export { default as Demo } from './Demo';
 export { default as DreamForge } from './DreamForge';
 export { default as HomePage } from './HomePage';
-export { default as Preview } from './Preview';
 export { default as Profile } from './Profile';
 export { default as SignUp } from './SignupLogin';
 export { default as Scene } from './Story';

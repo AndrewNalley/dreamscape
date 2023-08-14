@@ -61,7 +61,7 @@ const Profile = () => {
                 title={`${user.story.title}`}/> */}
             </div>
             <div className='align-self-center w-25 justify-content-center p-4'>
-               <Link style={linkStyle} to='storyWell'><div className='rounded-circle bg-primary'>VISIT COMMUNITY STORY WELL</div></Link>
+               <Link style={linkStyle} to='/storyWell'><div className='rounded-circle bg-primary'>VISIT COMMUNITY STORY WELL</div></Link>
             </div>
          </div>
         </>
