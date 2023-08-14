@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
+import { LOGIN } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
@@ -10,9 +11,10 @@ const SignUp = () => {
   const [formState, setFormState] = useState({
     username: '',
    
-    password: '',
+    signUpPassword: '',
   });
   const [addUser, {error }] = useMutation(CREATE_USER);
+  const [login, { data }] = useMutation(LOGIN);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -39,6 +41,27 @@ const SignUp = () => {
       console.error(e);
     }
   }
+
+  const handleLoginFormSubmit = async (event) => {
+    event.preventDefault();
+    // console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+  
+      Auth.login(data.login.token);
+    } catch (error) {
+      console.error(error);
+    }
+    
+    // clear form values
+    setFormState({
+      username: '',
+      loginPassword: '',
+    });
+  };
+
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
@@ -64,9 +87,9 @@ const SignUp = () => {
                 <input
                   className="form-input"
                   placeholder="******"
-                  name="password"
+                  name="signUpPassword"
                   type="password"
-                  value={formState.password}
+                  value={formState.signUpPassword}
                   onChange={handleChange}
                 />
                 <button
@@ -78,10 +101,48 @@ const SignUp = () => {
                 </button>
               </form>
             
+            {data ? (
+              <p>
+                Success! You may now head{  <Navigate to='/Profile' />}
+              
+              </p>
+            ) :(
 
-            
-           
-          </div>
+            <form className=' align-self-center ' onSubmit={handleLoginFormSubmit}>
+              <h3 className="m-3">Login</h3>
+              <p>User name</p>
+              <input
+                className="form-input d-flex flex-column m-3 "
+                placeholder="User name"
+                name="username"
+                type="text"
+                value={formState.username}
+                onChange={handleChange}
+              />
+              <p>Password</p>
+              <input
+                className="form-input m-3"
+                placeholder="******"
+                name="loginPassword"
+                type="password" 
+                value={formState.loginPassword}
+                onChange={handleChange} />
+
+              <button
+                className="btn btn-block btn-primary"
+                style={{ cursor: 'pointer' }}
+                type="submit"
+              >
+                Login
+              </button>
+        
+
+
+            </form>)}
+
+                
+              
+              </div>
         </div>
       </div>
     </main>
