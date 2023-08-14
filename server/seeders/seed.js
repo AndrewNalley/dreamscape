@@ -25,12 +25,12 @@ const story = [
 const scenes = [
     {
         indexOrder: '1',
-        imagePath: path.join(__dirname, '/assets/ocean.jpg'),
+        imagePath: '/assets/ocean.jpg',
         text: 'The vast blue ocean stretches out to the horizon.'
     },
     {
         indexOrder: '2',
-        imagePath: path.join(__dirname, '../../client/public/assets/ocean.jpg'),
+        imagePath: '/assets/redOcean.avif',
         text: 'The vast red ocean stretches out to the Skyline.'
     }
 ]
@@ -55,7 +55,9 @@ db.once('open', async () => {
         })
         const createdScene = await Scene.create(scenes)
 
-        createdStory[0].scenes.push(createdScene[0]._id);
+        createdScene.forEach(created => {
+            createdStory[0].scenes.push(created._id);
+        })
         await createdStory[0].save();
 
         console.log('Seeding completed successfully.');
