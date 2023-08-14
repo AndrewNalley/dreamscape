@@ -24,7 +24,7 @@ import Preview from './pages/Preview'
 import DreamForge from "./pages/DreamForge"
 import Audio from "./pages/Audio"
 import Demo from "./pages/Demo"
-import SignUp from './pages/SignUp';
+import SignupLogin from './pages/SignupLogin';
 import Text from './pages/Text'
 import Visual from "./pages/Visual"
 
@@ -62,8 +62,8 @@ const router = createBrowserRouter([
     
   },
 {
-  path:"signUp",
-  element: <SignUp/>
+  path:"SignupLogin",
+  element: <SignupLogin/>
 },
 {
   path:"storyWell",
