@@ -8,7 +8,7 @@ const typeDefs = gql`
     }
 
     type Auth {
-        token: ID
+        token: ID!
         user: User
     }
 
@@ -30,6 +30,7 @@ const typeDefs = gql`
     }
 
     type Query {
+        user (id: ID!): User
         me: User
         communityStories: [Story]
         story(storyId: ID!): Story
@@ -42,8 +43,7 @@ const typeDefs = gql`
         createUser(username: String!, password: String!): Auth
         updateUser(username: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
-       
-        createStory(title: String! user:ID!): Story
+        createStory(title: String!): Story
         createScene(
             storyId: ID!
             imagePath: String!

@@ -25,7 +25,7 @@ const story = [
 const scenes = [
     {
         indexOrder: '1',
-        imagePath: path.join(__dirname, '../../client/public/assets/ocean.jpg'),
+        imagePath: path.join(__dirname, '/assets/ocean.jpg'),
         text: 'The vast blue ocean stretches out to the horizon.'
     },
     {
@@ -38,6 +38,8 @@ const scenes = [
 db.once('open', async () => {
     try {
         await User.deleteMany({});
+        await Story.deleteMany({});
+        await Scene.deleteMany({});
         const createdUsers = await User.create(users);
 
         story.forEach(storyOb => {
@@ -45,18 +47,16 @@ db.once('open', async () => {
         });
         const createdStory = await Story.create(story);
 
-        createdUsers[0].stories.push(createdStory._id); // Add the story's _id to the user's stories array
+        createdUsers[0].stories.push(createdStory[0]._id); // Add the story's _id to the user's stories array
         await createdUsers[0].save();
 
-        await Scene.deleteMany({});
-        for (const scene of scenes) {
-            const createdScene = await Scene.create({
-                ...scene,
-                storyId: createdStory[0]._id
-            });
-            createdStory[0].scenes.push(createdScene._id);
-            await createdStory[0].save();
-        }
+        scenes.forEach(scene => {
+            scene.storyId = createdStory[0]._id
+        })
+        const createdScene = await Scene.create(scenes)
+
+        createdStory[0].scenes.push(createdScene[0]._id);
+        await createdStory[0].save();
 
         console.log('Seeding completed successfully.');
     } catch (error) {
