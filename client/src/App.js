@@ -1,5 +1,3 @@
-import { BrowserRouter as Router} from 'react-router-dom';
-
 import {
   ApolloClient,
   InMemoryCache,
@@ -9,31 +7,13 @@ import {
 import {
   createBrowserRouter,
   RouterProvider,
-
   Link,
 } from "react-router-dom";
 
 
 import { setContext } from "@apollo/client/link/context";
 
-import HomePage from './pages/HomePage';
-import StoryWell from './pages/StoryWell'
-import Scene from './pages/Story'
-import Profile from './pages/Profile'
-import Preview from './pages/Preview'
-import DreamForge from "./pages/DreamForge"
-import Audio from "./pages/Audio"
-import Demo from "./pages/Demo"
-import SignupLogin from './pages/SignupLogin';
-import Text from './pages/Text'
-import Visual from "./pages/Visual"
-
-
-
-
-import PixabaySearch from './utils/API/photoAPI';
-
-
+import { Audio, Demo, DreamForge, HomePage, Preview, Profile, Scene, Signup, StoryWell, Text, Visual } from './pages'
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -63,7 +43,7 @@ const router = createBrowserRouter([
   },
 {
   path:"SignupLogin",
-  element: <SignupLogin/>
+  element: <Signup/>
 },
 {
   path:"storyWell",
