@@ -18,7 +18,7 @@ import { setContext } from "@apollo/client/link/context";
 
 import HomePage from './pages/HomePage';
 import StoryWell from './pages/StoryWell'
-import Scene from './pages/Scene'
+import Scene from './pages/Story'
 import Profile from './pages/Profile'
 import Preview from './pages/Preview'
 import DreamForge from "./pages/DreamForge"
@@ -78,7 +78,7 @@ const router = createBrowserRouter([
   element: <Text />
 },
 {
-  path:"scene/:sceneId",
+  path:"/story/:storyId",
   element:<Scene />
 },
 {

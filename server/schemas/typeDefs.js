@@ -26,7 +26,7 @@ const typeDefs = gql`
         indexOrder: String
         imagePath: String
         text: String
-        audio: String
+        
     }
 
     type Query {

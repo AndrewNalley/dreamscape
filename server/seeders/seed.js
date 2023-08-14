@@ -28,6 +28,11 @@ const scenes = [
         imagePath: path.join(__dirname, '../../client/public/assets/ocean.jpg'),
         text: 'The vast blue ocean stretches out to the horizon.'
     },
+    {
+        indexOrder: '2',
+        imagePath: path.join(__dirname, '../../client/public/assets/ocean.jpg'),
+        text: 'The vast red ocean stretches out to the Skyline.'
+    }
 ]
 
 db.once('open', async () => {
