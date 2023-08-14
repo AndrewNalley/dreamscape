@@ -25,7 +25,7 @@ const story = [
 const scenes = [
     {
         indexOrder: '1',
-        imagePath: path.join(__dirname, '../../client/public/assets/ocean.jpg'),
+        imagePath: path.join(__dirname, '/assets/ocean.jpg'),
         text: 'The vast blue ocean stretches out to the horizon.'
     },
 ]
