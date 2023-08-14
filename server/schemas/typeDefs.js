@@ -4,6 +4,7 @@ const typeDefs = gql`
     type User {
         _id: ID
         username: String
+      
         stories: [Story]
     }
 
@@ -15,7 +16,7 @@ const typeDefs = gql`
     type Story {
         _id: ID
         title: String
-        user: ID
+        user: ID 
         scenes: [Scene]
         shared: Boolean
     }
