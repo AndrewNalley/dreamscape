@@ -1,12 +1,17 @@
 import React from 'react'
-// import { Navigate, useParams } from 'react-router-dom'
+import UserJourneys from '../components/UserJourneys'
 // import { useQuery } from '@apollo/client'
 // import { Button } from 'react-bootstrap'
 import { GET_ME, QUERY_USER } from '../utils/queries'
 import { useQuery } from '@apollo/client';
-import { Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 
 import Auth from '../utils/auth'
+
+const linkStyle = {
+  textDecoration: 'none',
+  color: 'dark',
+}
 
 const Profile = () => {
     const { username: userParam } = useParams()
@@ -19,7 +24,7 @@ const Profile = () => {
     const user =data?.me || data?.user || {}
     console.log(user)
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-        return <Navigate to='/Profile' />
+        return <Link to='/Profile' />
     }
 
     if (loading) {
@@ -37,19 +42,21 @@ const Profile = () => {
 
     return (
         <>
-         <div className='d-flex flex-row justify-content-center'>
-            <h2 className=''>- Welcome User -</h2>
+         <div className='d-flex flex-row justify-content-center m-4'>
+            <h2 className=''>- Welcome {user.username} -</h2>
          </div>
-         <div className='d-flex flex-row justify-content-around'>
-            <div className='d-flex align-self-center w-25 '>
-            <div className='rounded-circle bg-primary '>CREATE NEW MINDFULNESS JOURNEY</div>
+         <div className='d-flex flex-row justify-content-around mt-4'>
+            <div className='d-flex align-self-center w-25 p-4'>
+            <Link style={linkStyle} to='DreamForge'><div className='rounded-circle bg-primary '>CREATE NEW MINDFULNESS JOURNEY</div></Link>
             </div>
             <div>
-                <h3 className='p-3'>DREAMSCAPES</h3>
-                <p>Iterate through Journey's Here</p>
+                <h3 className='p-3 shadow-lg w-auto card h-100'>DREAMSCAPES</h3>
+                {/* <UserJourneys 
+                stories={user.story}
+                title={`${user.story.title}`}/> */}
             </div>
-            <div className='align-self-center w-25 justify-content-center'>
-                <div className='rounded-circle bg-primary'>VISIT COMMUNITY STORY WELL</div>
+            <div className='align-self-center w-25 justify-content-center p-4'>
+               <Link style={linkStyle} to='storyWell'><div className='rounded-circle bg-primary'>VISIT COMMUNITY STORY WELL</div></Link>
             </div>
          </div>
         </>
