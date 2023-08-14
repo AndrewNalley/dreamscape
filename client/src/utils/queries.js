@@ -15,7 +15,7 @@ export const GET_ME = gql`
 
 export const GET_COMMUNAL = gql`
     query communityStories {
-        stories {
+        communityStories {
             _id
             title
             shared
