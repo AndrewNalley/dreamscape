@@ -5,7 +5,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 
 
 const DreamForge = () => {
-
+    const addScene = useMutation(CREATE_SCENE)
     const [bgImage, setImage] = useState('')
     const [sceneText, setText] = useState('')
 
@@ -66,6 +66,12 @@ const DreamForge = () => {
                 <div className='m-2'>Visual</div>
             </div>
             <div className='align-end justify-end'>Finish Story</div>
+            <button onClick=''>
+                Next Scene
+            </button>
+            <button onClick=''>
+                Finish Story
+            </button>
         </div>
     )
 }
