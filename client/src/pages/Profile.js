@@ -53,7 +53,7 @@ const Profile = () => {
                 <h3 className='p-3 shadow-lg w-auto card h-100'>DREAMSCAPES</h3>
                 {(user.stories).map((story) => (
                 <div key={story._id} className="card mb-3">
-                  <p>{story.title}</p>
+                  <Link style={linkStyle} to={`/story/${story._id}`}><div className='rounded-circle bg-primary '>{story.title}</div></Link>
                 </div>))}
                 {/* <UserJourneys 
                 stories={user.story}
