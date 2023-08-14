@@ -6,6 +6,7 @@ export const GET_ME = gql`
         _id
         username
         stories {
+            _id
            title
            shared 
         }
@@ -17,6 +18,7 @@ export const GET_COMMUNAL = gql`
         stories {
             _id
             title
+            shared
         }
     }`
 
@@ -30,8 +32,7 @@ export const GET_STORY = gql`
                 storyId
                 indexOrder
                 imagePath
-                text
-                
+                text    
             }
         }
     }`

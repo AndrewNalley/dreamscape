@@ -2,7 +2,7 @@ import React from 'react'
 import UserJourneys from '../components/UserJourneys'
 // import { useQuery } from '@apollo/client'
 // import { Button } from 'react-bootstrap'
-import { GET_ME, QUERY_USER,GET_STORY } from '../utils/queries'
+import { GET_ME, QUERY_USER, GET_STORY } from '../utils/queries'
 import { useQuery } from '@apollo/client';
 import { Link, Navigate, useParams } from 'react-router-dom';
 
@@ -24,7 +24,7 @@ const Profile = () => {
     const user =data?.me || data?.user || {}
     console.log(user)
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-        return <Link to='/Profile' />
+        return <Navigate to='/Profile' />
     }
 
     if (loading) {
@@ -51,6 +51,10 @@ const Profile = () => {
             </div>
             <div>
                 <h3 className='p-3 shadow-lg w-auto card h-100'>DREAMSCAPES</h3>
+                {(user.stories).map((story) => (
+                <div key={story._id} className="card mb-3">
+                  <p>{story.title}</p>
+                </div>))}
                 {/* <UserJourneys 
                 stories={user.story}
                 title={`${user.story.title}`}/> */}
