@@ -30,7 +30,7 @@ const scenes = [
     },
     {
         indexOrder: '2',
-        imagePath: '/assets/redOcean.avif',
+        imagePath: '/assets/images/redOcean.avif',
         text: 'The vast red ocean stretches out to the Skyline.'
     }
 ]

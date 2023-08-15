@@ -43,7 +43,7 @@ const router = createBrowserRouter([
   },
 {
   path:"/signUp",
-  element: <Signup/>
+  element: <SignUp/>
 },
 {
   path:"/storyWell",

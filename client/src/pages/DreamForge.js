@@ -2,16 +2,67 @@ import React, { useState } from 'react'
 import { CREATE_SCENE } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import Modal from 'react-modal'
 
 // Import the list of image filenames from the assets folder
 import { photoArray } from '../assets'
 
+
+
+const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      flexBox: 'flex',
+      height: 'auto',
+      bottom: '0'
+    },
+  };
+
+Modal.setAppElement('#root')
 
 const DreamForge = () => {
     const addScene = useMutation(CREATE_SCENE)
     const [bgImage, setImage] = useState('')
     const [sceneText, setText] = useState('')
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    let subtitle
+    const [modalIsOpen, setIsOpen] = React.useState(false)
+    const photos = [
+        'https://picsum.photos/id/10/200/300',
+        'https://picsum.photos/id/11/200/300',
+        'https://picsum.photos/id/13/200/300',
+        'https://picsum.photos/id/22/200/300',
+        'https://picsum.photos/id/25/200/300',
+        'https://picsum.photos/id/29/200/300',
+        'https://picsum.photos/id/38/200/300',
+        'https://picsum.photos/id/41/200/300',
+        'https://picsum.photos/id/43/200/300',
+        'https://picsum.photos/id/58/200/300',
+        'https://picsum.photos/id/98/200/300',
+        'https://picsum.photos/id/102/200/300',
+        'https://picsum.photos/id/154/200/300',
+        'https://picsum.photos/id/159/200/300',
+        'https://picsum.photos/id/184/200/300',
+        'https://picsum.photos/id/225/200/300',
+        'https://picsum.photos/id/260/200/300',
+     ]
+
+    function openModal() {
+        setIsOpen(true)
+    }
+
+    function afterOpenModal() {
+        subtitle.style.color = '#f00'
+    }
+
+    function closeModal() {
+        setIsOpen(false)
+    }
 
     const handleFormSubmit = async (event) => {
         event.preventDefault()
@@ -64,9 +115,27 @@ const DreamForge = () => {
                 </div>
             </form>
             <div>
-                <button onClick={() => navigateImages(-1)}>Previous Image</button>
-                <button onClick={() => navigateImages(1)}>Next Image</button>
-                <button onClick={saveImage}>Save Image</button>
+                <button onClick={openModal}> Set Scene Image </button>
+                <Modal
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel='Image Selection Modal'>
+                    <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+                     <button onClick={closeModal}>close</button>
+                <div>Select an image for your scene.</div>
+                <form>
+                <div className='d-flex row align-items-center'>
+                {(photos).map((photo) => (
+                <img key={photo._id} src={photo} className="card mb-3 d-flex col-2" />
+                  
+                ))}
+            </div>
+            <input />
+            </form>
+                </Modal>
+                
 
             </div>
             <form
