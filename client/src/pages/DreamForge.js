@@ -3,11 +3,9 @@ import { CREATE_SCENE } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import Modal from 'react-modal'
-
+import PoetryAPI from '../utils/API/poetryAPI'
 // Import the list of image filenames from the assets folder
 import { photoArray } from '../assets'
-
-
 
 const customStyles = {
     content: {
@@ -160,6 +158,7 @@ const DreamForge = () => {
                 <div className='m-2'>Text</div>
                 <div className='m-2'>Visual</div>
             </div>
+            <PoetryAPI />
             <div className='align-end justify-end'>Finish Story</div>
             <button onClick=''>
                 Next Scene
