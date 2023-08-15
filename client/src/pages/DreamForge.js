@@ -5,7 +5,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import Modal from 'react-modal'
 import PoetryAPI from '../utils/API/poetryAPI'
 // Import the list of image filenames from the assets folder
-// import { photoArray } from '../assets'
+import { photoArray } from '../assets'
 
 const customStyles = {
     content: {
@@ -31,26 +31,7 @@ const DreamForge = () => {
     // const [currentImageIndex, setCurrentImageIndex] = useState(0);
     let subtitle
     const [modalIsOpen, setIsOpen] = React.useState(false)
-    const photos = [
-        'https://picsum.photos/id/10/200/300',
-        'https://picsum.photos/id/11/200/300',
-        'https://picsum.photos/id/13/200/300',
-        'https://picsum.photos/id/22/200/300',
-        'https://picsum.photos/id/25/200/300',
-        'https://picsum.photos/id/29/200/300',
-        'https://picsum.photos/id/38/200/300',
-        'https://picsum.photos/id/41/200/300',
-        'https://picsum.photos/id/43/200/300',
-        'https://picsum.photos/id/58/200/300',
-        'https://picsum.photos/id/98/200/300',
-        'https://picsum.photos/id/102/200/300',
-        'https://picsum.photos/id/154/200/300',
-        'https://picsum.photos/id/159/200/300',
-        'https://picsum.photos/id/184/200/300',
-        'https://picsum.photos/id/225/200/300',
-        'https://picsum.photos/id/260/200/300',
-    ]
-
+    
     function openModal() {
         setIsOpen(true)
     }
@@ -103,11 +84,12 @@ const DreamForge = () => {
     //     changeBackgroundImage(newIndex);
     // };
 
-    // const saveImage = () => {
-    //     // save the currently set background image (bgImage) to a variable for later use
-    //     const savedImage = bgImage;
-    //     console.log('Image saved:', savedImage);
-    // };
+    const saveImage = (p) => {
+        // save the currently set background image (bgImage) to a variable for later use
+        const savedImage = p.url;
+        setImage(savedImage)
+        console.log('Image saved:', savedImage);
+    };
 
     return (
         <div
@@ -129,23 +111,23 @@ const DreamForge = () => {
             <div>
                 <button onClick={openModal}> Set Scene Image </button>
                 <Modal
-                    isOpen={modalIsOpen}
-                    onAfterOpen={afterOpenModal}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel='Image Selection Modal'>
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel='Image Selection Modal'>
                     <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-                    <button onClick={closeModal}>close</button>
-                    <div>Select an image for your scene.</div>
-                    <form>
-                        <div className='d-flex row align-items-center'>
-                            {(photos).map((photo) => (
-                                <img key={photo._id} src={photo} className="card mb-3 d-flex col-2" />
-
-                            ))}
-                        </div>
-                        <input />
-                    </form>
+                     <button onClick={closeModal}>close</button>
+                <div>Select an image for your scene.</div>
+                <form>
+                <div className='d-flex row align-items-center'>
+                {(photoArray).map((photo) => (
+                <img onClick={() => saveImage(photo)} key={photo.id} src={photo.url} className="card mb-3 d-flex col-2" />
+                  
+                ))}
+            </div>
+            
+            </form>
                 </Modal>
 
 
