@@ -1,36 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 function PoetryAPI() {
-  const [poems, setPoems] = useState([]);
+  const [poems, setPoems] = useState({
+    title: '',
+    lines: [],
+  });
+  const [savedPoem, setSavedPoems] = useState([]);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   useEffect(() => {
-    axios.get('https://poetrydb.org/author,linecount/Shakespeare;14/lines')
-      .then(response => {
-        const fetchedPoems = response.data;
-        const randomPoems = [];
+    if (buttonClicked) {
+      async function fetchPoem() {
+        try {
+          const response = await fetch('https://poetrydb.org/random/1/author,title,lines');
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
 
-        for (let i = 0; i < 5; i++) {
-          const randomPoem = fetchedPoems[Math.floor(Math.random() * fetchedPoems.length)];
-          randomPoems.push(randomPoem.lines.join('\n')); 
+          const data = await response.json();
+          const fetchedPoem = data[0];
+          setPoems(fetchedPoem);
+        } catch (error) {
+          console.error('Error:', error);
         }
+      }
 
-        setPoems(randomPoems);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  }, []);
+      fetchPoem();
+    }
+  }, [buttonClicked]);
+
+  const handleSave = () => {
+    if (poems.title && poems.lines.length > 0) {
+      const savedPoem = {
+        title: poems.title,
+        lines: poems.lines,
+      };
+      console.log('You saved this poem: ', savedPoem)
+      setSavedPoems(prevSavedPoems => [...prevSavedPoems, savedPoem]);
+    }
+  };
+  console.log(poems);
+  
+
 
   return (
     <div>
-      <h1>Random Shakespearean Sonnets</h1>
-      {poems.map((poem, index) => (
-        <div key={index}>
-          <h2>Poem {index + 1}</h2>
-          <pre>{poem}</pre>
-        </div>
-      ))}
+      <h1>Random Poem</h1>
+      <button onClick={() => setButtonClicked(true)}>New Poem</button>
+      <button onClick={handleSave}>Save Poem</button>
+      <div className="poem-card">
+        <h2>{poems.title}</h2>
+        {poems.lines.map((line, index) => (
+          <p key={index}>{line}</p>
+        ))}
+      </div>
     </div>
   );
 }
