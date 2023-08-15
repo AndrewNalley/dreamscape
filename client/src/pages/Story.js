@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { GET_ME, QUERY_USER, GET_SCENE, GET_STORY } from '../utils/queries'
 import { useQuery } from '@apollo/client';
 import { Link, Navigate, useParams } from 'react-router-dom';
+import { photoArray } from '../assets'
+
 
 const Scene = (props) => {
 
@@ -50,6 +52,7 @@ const Scene = (props) => {
     const text = story.scenes?.[count].text
     // image from scenes array 
     const backgroundImage = story.scenes?.[count].imagePath
+    
 
 
 
@@ -112,7 +115,7 @@ return (
           alignItems: 'center',
         }}
       >
-        <div className="card mx-auto" style={{ width: '50%' }}>
+        <div className="card mx-auto" style={ {  width: '50%' }}>
           <h2>{story.title}</h2>
           <div className="card-body">
             <p>{text}</p>
