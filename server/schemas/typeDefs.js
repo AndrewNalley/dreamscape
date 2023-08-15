@@ -49,7 +49,6 @@ const typeDefs = gql`
             storyId: ID!
             imagePath: String!
             text: String
-            audio: String
             ): Scene
         removeStory(storyId: ID!): User
         removeScene(sceneId: ID!): Story

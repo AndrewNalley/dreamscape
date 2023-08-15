@@ -34,7 +34,6 @@ export const CREATE_STORY = gql`
                 indexOrder
                 imagePath
                 text
-                audio
             }
             shared
         }
@@ -48,7 +47,6 @@ export const CREATE_SCENE = gql`
             indexOrder
             imagePath
             text
-            audio
         }
     }`
 
@@ -75,7 +73,6 @@ export const REMOVE_SCENE = gql`
                 indexOrder
                 imagePath
                 text
-                audio
             }
             shared
         }
