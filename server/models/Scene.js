@@ -6,10 +6,6 @@ const sceneSchema = new Schema({
         required: true,
         ref: 'Story'
     },
-    indexOrder: {
-        type: String,
-        required: true,
-    },
     imagePath: {
         type: String,
         required: true,
@@ -17,10 +13,6 @@ const sceneSchema = new Schema({
     text: {
         type: String,
     },
-    audio: {
-        data: Buffer,
-        contentType: String,
-    }
 });
 
 const Scene = model('Scene', sceneSchema);

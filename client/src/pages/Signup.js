@@ -13,6 +13,7 @@ const SignUp = () => {
     password: '',
   });
   const [addUser, {error }] = useMutation(CREATE_USER);
+  const [loginError, setLoginError]= useState(false)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -37,6 +38,9 @@ const SignUp = () => {
 
     
     } catch (e) {
+      
+    setLoginError(true)
+      
 
       console.error(e);
     }
@@ -68,7 +72,7 @@ const SignUp = () => {
        
      
      
-              <form form className=' align-self-center ' onSubmit={handleFormSubmit}>
+              <form className=' align-self-center ' onSubmit={handleFormSubmit}>
                 <input
                   className="form-input m-2"
                   placeholder="Your username"
@@ -86,6 +90,9 @@ const SignUp = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+                      { loginError && (
+              <p className='text-danger'>This User Already Exist  </p>)
+                }
                 <button
                   className="btn btn-block btn-primary m-2"
                   style={{ cursor: 'pointer' }}

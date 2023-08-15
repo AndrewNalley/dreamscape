@@ -30,7 +30,6 @@ export const GET_STORY = gql`
             scenes {
                 _id
                 storyId
-                indexOrder
                 imagePath
                 text    
             }
@@ -42,7 +41,6 @@ export const GET_SCENE = gql`
         scene(sceneId:  $sceneId) {
             _id
             storyId
-            indexOrder
             imagePath
             text
             
@@ -54,8 +52,6 @@ export const GET_SCENE = gql`
       user(username: $username) {
         _id
         username
-        email
-     
-        
+        email  
       }
     }`
