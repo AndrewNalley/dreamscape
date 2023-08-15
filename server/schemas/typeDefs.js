@@ -24,7 +24,6 @@ const typeDefs = gql`
     type Scene {
         _id: ID
         storyId: ID
-        indexOrder: String
         imagePath: String
         text: String
         
