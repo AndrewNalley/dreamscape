@@ -62,15 +62,16 @@ const DreamForge = () => {
         }
         // setCurrentImageIndex(0);
     }
-
+    const { storyId } = useParams()
     const handleAddScene = async () => {
         createScene({
             variables: {
-                storyId: '64dbc89d7053b505b702f094',
+                storyId: storyId,
                 imagePath: bgImage,
                 text: sceneText
             }
         })
+        console.log(storyId)
         console.log('scene added successfully!')
     }
 
@@ -96,7 +97,7 @@ const DreamForge = () => {
             className="bg-image" // You can create a CSS class named 'bg-image' for styling
             style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover', minHeight: '100vh' }}
         >
-            <form
+            {/* <form
                 className="flex-row justify-center justify-space-between-md align-center"
                 onSubmit={handleFormSubmit}
             >
@@ -107,7 +108,7 @@ const DreamForge = () => {
                         className="form-input w-100"
                     />
                 </div>
-            </form>
+            </form> */}
             <div>
                 <button onClick={openModal}> Set Scene Image </button>
                 <Modal
@@ -132,7 +133,7 @@ const DreamForge = () => {
 
 
             </div>
-            <form
+            {/* <form
                 className="flex-row justify-center justify-space-between-md align-center"
                 onSubmit={handleFormSubmit}
             >
@@ -143,7 +144,7 @@ const DreamForge = () => {
                         className="form-input w-100"
                     />
                 </div>
-            </form>
+            </form> */}
 
             <div className='flex-row'>
                 <div>Story Title</div>

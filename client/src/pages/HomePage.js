@@ -7,7 +7,7 @@ import background from "../assets/images/tree.jpg"
 const HomePage = (props) => {
   const [formState, setFormState] = useState({ username: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN);
-
+  const [loginError, setLoginError]= useState(false)
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,6 +29,7 @@ const HomePage = (props) => {
 
       Auth.login(data.login.token);
     } catch (error) {
+      setLoginError(true)
       console.error(error);
     }
 
@@ -114,15 +115,17 @@ const HomePage = (props) => {
                 >
                   Login
                 </button>
+                { loginError && (
+              <p className='text-danger'>Incorrect username or password  </p>)
+                }
+                <div className="d-flex flex-row m-2">
 
-                <div class="d-flex flex-row m-2">
-
-                  <p className='text-white m-1'>New To Dreamscape Sign up</p>
+                  <p className='text-white m-1'>New To Dreamscape:</p>
                   <Link to="/signUp">
 
-                    <button
-                      className="btn btn-block btn-primary"
-                      style={{ cursor: 'pointer' }}>
+                    <button 
+                      className="btn btn-block btn-primary "
+                      style={{ cursor: 'pointer', marginLeft:"41px" }}>
                       Sign-Up
                     </button>
                   </Link>
