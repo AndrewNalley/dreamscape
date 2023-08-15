@@ -5,7 +5,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import Modal from 'react-modal'
 
 // Import the list of image filenames from the assets folder
-import { photoArray } from '../assets'
+import { photoObj } from '../assets'
 
 
 
@@ -82,12 +82,12 @@ const DreamForge = () => {
     }
 
     const changeBackgroundImage = (index) => {
-        setImage(photoArray[index]);
+        setImage(photoObj[index]);
         setCurrentImageIndex(index);
     };
 
     const navigateImages = (increment) => {
-        const newIndex = (currentImageIndex + increment + photoArray.length) % photoArray.length;
+        const newIndex = (currentImageIndex + increment + photoObj.length) % photoObj.length;
         changeBackgroundImage(newIndex);
     };
 
