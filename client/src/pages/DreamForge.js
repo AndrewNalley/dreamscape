@@ -5,31 +5,32 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import Modal from 'react-modal'
 
 // Import the list of image filenames from the assets folder
-import { photoArray } from '../assets'
+// import { photoArray } from '../assets'
 
 
 
 const customStyles = {
     content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      flexBox: 'flex',
-      height: 'auto',
-      bottom: '0'
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        flexBox: 'flex',
+        height: 'auto',
+        bottom: '0'
     },
-  };
+};
 
 Modal.setAppElement('#root')
 
 const DreamForge = () => {
-    const addScene = useMutation(CREATE_SCENE)
+    const [createScene] = useMutation(CREATE_SCENE)
     const [bgImage, setImage] = useState('')
     const [sceneText, setText] = useState('')
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [formSubmit, setFormSubmit] = useState(false)
+    // const [currentImageIndex, setCurrentImageIndex] = useState(0);
     let subtitle
     const [modalIsOpen, setIsOpen] = React.useState(false)
     const photos = [
@@ -50,7 +51,7 @@ const DreamForge = () => {
         'https://picsum.photos/id/184/200/300',
         'https://picsum.photos/id/225/200/300',
         'https://picsum.photos/id/260/200/300',
-     ]
+    ]
 
     function openModal() {
         setIsOpen(true)
@@ -76,26 +77,39 @@ const DreamForge = () => {
         if (event.target.elements.text) {
             const textValue = event.target.elements.text.value
             console.log(textValue)
-            setText(textValue)
+            const formattedText = textValue.replace(/-/g, '<br>');
+            setText(formattedText);
+            setFormSubmit(true)
         }
-        setCurrentImageIndex(0);
+        // setCurrentImageIndex(0);
     }
 
-    const changeBackgroundImage = (index) => {
-        setImage(photoArray[index]);
-        setCurrentImageIndex(index);
-    };
+    const handleAddScene = async () => {
+        createScene({
+            variables: {
+                storyId: '64dbc89d7053b505b702f094',
+                imagePath: bgImage,
+                text: sceneText
+            }
+        })
+        console.log('scene added successfully!')
+    }
 
-    const navigateImages = (increment) => {
-        const newIndex = (currentImageIndex + increment + photoArray.length) % photoArray.length;
-        changeBackgroundImage(newIndex);
-    };
+    // const changeBackgroundImage = (index) => {
+    //     setImage(photoArray[index]);
+    //     setCurrentImageIndex(index);
+    // };
 
-    const saveImage = () => {
-        // save the currently set background image (bgImage) to a variable for later use
-        const savedImage = bgImage;
-        console.log('Image saved:', savedImage);
-    };
+    // const navigateImages = (increment) => {
+    //     const newIndex = (currentImageIndex + increment + photoArray.length) % photoArray.length;
+    //     changeBackgroundImage(newIndex);
+    // };
+
+    // const saveImage = () => {
+    //     // save the currently set background image (bgImage) to a variable for later use
+    //     const savedImage = bgImage;
+    //     console.log('Image saved:', savedImage);
+    // };
 
     return (
         <div
@@ -117,25 +131,25 @@ const DreamForge = () => {
             <div>
                 <button onClick={openModal}> Set Scene Image </button>
                 <Modal
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel='Image Selection Modal'>
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel='Image Selection Modal'>
                     <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-                     <button onClick={closeModal}>close</button>
-                <div>Select an image for your scene.</div>
-                <form>
-                <div className='d-flex row align-items-center'>
-                {(photos).map((photo) => (
-                <img key={photo._id} src={photo} className="card mb-3 d-flex col-2" />
-                  
-                ))}
-            </div>
-            <input />
-            </form>
+                    <button onClick={closeModal}>close</button>
+                    <div>Select an image for your scene.</div>
+                    <form>
+                        <div className='d-flex row align-items-center'>
+                            {(photos).map((photo) => (
+                                <img key={photo._id} src={photo} className="card mb-3 d-flex col-2" />
+
+                            ))}
+                        </div>
+                        <input />
+                    </form>
                 </Modal>
-                
+
 
             </div>
             <form
@@ -161,12 +175,26 @@ const DreamForge = () => {
                 <div className='m-2'>Visual</div>
             </div>
             <div className='align-end justify-end'>Finish Story</div>
-            <button onClick=''>
+            <button onClick={handleAddScene}>
                 Next Scene
             </button>
             <button onClick=''>
                 Finish Story
             </button>
+            {formSubmit && (
+                <div className="position-absolute bottom-0 end-0 p-3 text-white text-5xl"
+                    style={{
+                        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                        maxWidth: '33%',
+                        width: 'auto',
+                        maxHeight: '100vh',
+                        overflowY: 'auto',
+                        borderRadius: '10px',
+                        margin: '10px',
+                    }}>
+                    <p style={{ fontSize: '32px', margin: 0 }} dangerouslySetInnerHTML={{ __html: sceneText }} />
+                </div>
+            )}
         </div>
     )
 }

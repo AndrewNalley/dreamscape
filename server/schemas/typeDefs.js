@@ -24,7 +24,6 @@ const typeDefs = gql`
     type Scene {
         _id: ID
         storyId: ID
-        indexOrder: String
         imagePath: String
         text: String
         
@@ -49,7 +48,6 @@ const typeDefs = gql`
             storyId: ID!
             imagePath: String!
             text: String
-            audio: String
             ): Scene
         removeStory(storyId: ID!): User
         removeScene(sceneId: ID!): Story

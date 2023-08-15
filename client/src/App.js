@@ -67,7 +67,7 @@ const router = createBrowserRouter([
   element: <Profile />
 },
 {
-  path: "/dreamforge",
+  path: "/dreamforge/:storyId",
   element: <DreamForge />
 },
 {

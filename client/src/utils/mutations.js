@@ -31,24 +31,20 @@ export const CREATE_STORY = gql`
             scenes {
                 _id
                 storyId
-                indexOrder
                 imagePath
                 text
-                audio
             }
             shared
         }
     }`
 
 export const CREATE_SCENE = gql`
-    mutation createScene($storyId: ID!, $imagePath: String!, $text: String, $audio: String) {
-        createScene(storyId: $storyId, imagePath: $imagePath, text: $text, audio: $audio) {
+    mutation createScene($storyId: ID!, $imagePath: String!, $text: String) {
+        createScene(storyId: $storyId, imagePath: $imagePath, text: $text) {
             _id
             storyId
-            indexOrder
             imagePath
             text
-            audio
         }
     }`
 
@@ -72,10 +68,8 @@ export const REMOVE_SCENE = gql`
             scenes {
                 _id
                 storyId
-                indexOrder
                 imagePath
                 text
-                audio
             }
             shared
         }
