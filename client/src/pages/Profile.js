@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import UserJourneys from '../components/UserJourneys'
 // import { Button } from 'react-bootstrap'
 import { GET_ME, QUERY_USER, GET_STORY } from '../utils/queries'
@@ -24,6 +24,8 @@ const profileStyle = {
 
 const Profile = () => {
   const { username: userParam } = useParams()
+  const [createdStoryId, setCreatedStoryId] = useState('')
+  const [createdStoryTitle, setCreatedStoryTitle] = useState('')
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
     variables: { username: userParam },
@@ -56,15 +58,25 @@ const Profile = () => {
     );
   }
 
-  const handleCreateStory = async () => {
+  const handleCreateStory = async (event) => {
+    event.preventDefault()
+
+    const storyTitle = event.target.elements.title.value.trim()
+    if (storyTitle === '') {
+      return
+    }
+
+    setCreatedStoryTitle(storyTitle)
+
     const { data } = await createStory({
       variables: {
-        title: 'YIPPEREEDOOO'
+        title: storyTitle
       }
     })
 
     const newStoryId = data.createStory._id
-    console.log(newStoryId)
+    setCreatedStoryId(newStoryId)
+    console.log(createdStoryId)
   }
 
   return (
@@ -77,13 +89,22 @@ const Profile = () => {
         </button>
       </div>
       <div className='d-flex flex-row justify-content-around mt-4'>
-        <div className='d-flex align-self-center w-25 p-5'>
-          <Link className='icon-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover link-light' to='/dreamforge'>
-            <div className='text-white ' onClick={handleCreateStory}>
-              CREATE NEW MINDFULNESS JOURNEY
-            </div>
+      <div className='d-flex align-self-center w-25 p-5'>
+        {createdStoryId ? (
+          <Link to={`/dreamforge/${createdStoryId}`}>
+            <button>Add Scenes to "{createdStoryTitle}"</button>
           </Link>
-        </div>
+        ) : (
+          <form onSubmit={handleCreateStory}>
+            <input
+              type='text'
+              placeholder='Story Title'
+              name='title'
+            />
+            <button type='submit'>Add Title</button>
+          </form>
+        )}
+      </div>
         <div className='align-self-center w-25 justify-content-center p-4'>
           <Link className='icon-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover link-light' to='/storyWell'><div className='text-white '>VISIT COMMUNITY STORY WELL</div></Link>
         </div>
