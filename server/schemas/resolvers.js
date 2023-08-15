@@ -29,10 +29,13 @@ const resolvers = {
             return await Scene.findById(args.sceneId)
         },
         allUsers: async function (parent, args) {
-            return await User.find({})
+            return await User.find({}).populate('stories').populate({
+                path: 'stories',
+                populate: 'scenes'
+            })
         },
         allStory: async function (parent, args) {
-            return await Story.find({})
+            return await Story.find({}).populate('scenes')
         }
 
 
@@ -71,12 +74,13 @@ const resolvers = {
         },
         createScene: async function (parent, args) {
             const scene = await Scene.create(args)
-
+            console.log('begin story update')
             await Story.findOneAndUpdate(
                 { _id: args.storyId },
                 { $addToSet: { scenes: scene._id } },
                 { new: true }
             )
+            console.log('finish story update')
 
             return scene
         },

@@ -100,6 +100,7 @@ const Profile = () => {
               type='text'
               placeholder='Story Title'
               name='title'
+              maxLength={32}
             />
             <button type='submit'>Add Title</button>
           </form>

@@ -87,7 +87,7 @@ const DreamForge = () => {
     const handleAddScene = async () => {
         createScene({
             variables: {
-                storyId: '64dba3883fda800868736211',
+                storyId: '64dbc68a7053b505b702f085',
                 imagePath: bgImage,
                 text: sceneText
             }

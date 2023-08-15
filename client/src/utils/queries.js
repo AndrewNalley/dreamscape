@@ -52,8 +52,6 @@ export const GET_SCENE = gql`
       user(username: $username) {
         _id
         username
-        email
-     
-        
+        email  
       }
     }`
