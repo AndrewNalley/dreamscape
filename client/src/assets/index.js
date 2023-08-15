@@ -20,7 +20,7 @@ const floatingIsland = 'https://res.cloudinary.com/dywzrjptt/image/upload/v16920
 
 
 
-const photoObj = {
+const photoArray = {
     cave, 
     clouds, 
     desert, 
@@ -42,4 +42,4 @@ const photoObj = {
     floatingIsland
 }
 
-export { photoObj };
+export { photoArray };
