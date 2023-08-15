@@ -13,7 +13,7 @@ import {
 
 import { setContext } from "@apollo/client/link/context";
 
-import { Audio, Demo, DreamForge, HomePage, Preview, Profile, Scene, SignUp, StoryWell, Text, Visual } from './pages'
+import { Audio, DreamForge, HomePage, Profile, Scene, SignUp, StoryWell, Text, Visual } from './pages'
 
 const httpLink = createHttpLink({
   uri: "/graphql",
