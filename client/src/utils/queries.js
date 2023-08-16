@@ -8,6 +8,9 @@ export const GET_ME = gql`
         stories {
             _id
            title
+           scenes {
+            _id
+           }
            shared 
         }
     }

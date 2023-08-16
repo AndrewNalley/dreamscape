@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import UserJourneys from '../components/UserJourneys'
+// import UserJourneys from '../components/UserJourneys'
 // import { Button } from 'react-bootstrap'
-import { GET_ME, QUERY_USER, GET_STORY } from '../utils/queries'
+import { GET_ME, QUERY_USER } from '../utils/queries'
 import { useQuery } from '@apollo/client';
-import { CREATE_STORY } from '../utils/mutations'
+import { CREATE_STORY, REMOVE_STORY } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
-import { Link, Navigate, useParams, } from 'react-router-dom';
+import { Link, useParams, } from 'react-router-dom';
 
 import Auth from '../utils/auth'
 
@@ -32,6 +32,9 @@ const Profile = () => {
   })
 
   const [createStory] = useMutation(CREATE_STORY)
+  const [removeStory] = useMutation(REMOVE_STORY)
+
+
 
   const user = data?.me || data?.user || {}
   console.log(user)
@@ -89,32 +92,38 @@ const Profile = () => {
         </button>
       </div>
       <div className='d-flex flex-row justify-content-around mt-4'>
-      <div className='d-flex align-self-center w-25 p-5'>
-        {createdStoryId ? (
-          <Link to={`/dreamforge/${createdStoryId}`}>
-            <button>Add Scenes to "{createdStoryTitle}"</button>
-          </Link>
-        ) : (
-          <form onSubmit={handleCreateStory}>
-            <input
-              type='text'
-              placeholder='Story Title'
-              name='title'
-              maxLength={32}
-            />
-            <button type='submit'>Add Title</button>
-          </form>
-        )}
-      </div>
+        <div className='d-flex align-self-center w-25 p-5'>
+          {createdStoryId ? (
+            <Link to={`/dreamforge/${createdStoryId}`}>
+              <button>Add Scenes to "{createdStoryTitle}"</button>
+            </Link>
+          ) : (
+            <form onSubmit={handleCreateStory}>
+              <input
+                type='text'
+                placeholder='Story Title'
+                name='title'
+                maxLength={32}
+              />
+              <button type='submit'>Add Title</button>
+            </form>
+          )}
+        </div>
         <div className='align-self-center w-25 justify-content-center p-4'>
           <Link className='icon-link link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover link-light' to='/storyWell'><div className='text-white '>VISIT COMMUNITY STORY WELL</div></Link>
         </div>
         <div>
           <h3 className='p-3 shadow-lg w-auto card mx-4 my-4'>DREAMSCAPES</h3>
-          {(user.stories).map((story) => (
-            <div key={story._id} className="card mb-3">
-              <Link style={linkStyle} to={`/story/${story._id}`}><div className='rounded-circle bg-primary '>{story.title}</div></Link>
-            </div>))}
+          {(user.stories || []).map((story) => (
+            story.scenes.length > 0 ? (
+              <div key={story._id} className="card mb-3">
+                <Link style={linkStyle} to={`/story/${story._id}`}>
+                  <div className='rounded-circle bg-primary '>{story.title}</div>
+                </Link>
+              </div>
+            ) : null
+          ))}
+
           {/* <UserJourneys 
                 stories={user.story}
                 title={`${user.story.title}`}/> */}

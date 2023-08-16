@@ -12,10 +12,17 @@ const resolvers = {
         },
         me: async function (parent, args, context) {
             if (context.user) {
-                return User.findOne({ _id: context.user._id }).populate('stories').populate({
+                const user = await User.findOne({ _id: context.user._id }).populate('stories').populate({
                     path: 'stories',
                     populate: 'scenes'
                 })
+
+
+                const storiesToDelete = user.stories.filter((story) => story.scenes.length === 0)
+                await Promise.all(storiesToDelete.map(async (story) => {
+                    await Story.findOneAndDelete({ _id: story._id });
+                }))
+                return user
             }
             throw new AuthenticationError('Must log in!')
         },
