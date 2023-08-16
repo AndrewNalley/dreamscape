@@ -7,6 +7,7 @@ import Modal from 'react-modal'
 // Import the list of image filenames from the assets folder
 import { photoArray } from '../assets'
 import PoetryOptions from '../components/PoetryOptions'
+import PhotoModal from '../components/PhotoModal'
 import { poetryArray } from '../assets/poems'
 
 
@@ -106,11 +107,11 @@ const DreamForge = () => {
         console.log('Image saved:', savedImage);
     };
 
-       const saveText = (poem) => {
+    const saveText = (poem) => {
       const savedText = poem
       setText(savedText)
+      setFormSubmit(true)
       console.log('Text saved:', savedText)
-      console.log(sceneText)
     }
 
     return (
@@ -130,7 +131,7 @@ const DreamForge = () => {
                     />
                 </div>
             </form> */}
-            <div>
+            {/* <div>
                 <button onClick={openModal}> Set Scene Image </button>
                 <Modal
                 isOpen={modalIsOpen}
@@ -153,7 +154,10 @@ const DreamForge = () => {
                 </Modal>
 
 
-            </div>
+            </div> */}
+            <PhotoModal
+            photoArray={photoArray}
+            saveImage={saveImage} />
             <form
                 className="flex-row justify-center justify-space-between-md align-center"
                 onSubmit={handleFormSubmit}
