@@ -23,15 +23,21 @@ const Scene = (props) => {
     // count can't be greater the scenes array.
     const maxCount = story.scenes?.length - 1;
     const [showButton, setShowButton] = useState(false);
+    const [nextButton, setNextButton]= useState(true)
+    const [storyText, setStoryText]= useState(true)
+    const [theEnd, setTheEnd] = useState(false)
     const increaseCount = () => {
         if (count < maxCount) {
             setCount(count + 1)
-        } else if (count >= maxCount) {
+        } else if (count === maxCount) {
             setShowButton(true)
+            setNextButton(false)
+            setStoryText(false)
+            setTheEnd(true)
         }
 
-
     }
+    console.log(maxCount)
     console.log(count)
     const countToZero = () => {
         if (count > 0) {
@@ -39,15 +45,15 @@ const Scene = (props) => {
         }
     }
 
-    const decrease = () => {
-        if (count > 0) {
-            setCount(count - 1)
-        }
-    }
+    // const decrease = () => {
+    //     if (count > 0) {
+    //         setCount(count - 1)
+    //     }
+    // }
 
 
 
-    // console.log(story.scenes?.[count])
+    console.log(story)
     // text from scenes array 
     const text = story.scenes?.[count].text
     // image from scenes array 
@@ -94,17 +100,13 @@ const Scene = (props) => {
 return (
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh',
-        backgroundColor: 'black',
+    
       }}
     >
       <div
         style={{
           backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'contain',
+          backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundAttachment: 'fixed',
           backgroundPosition: 'center',
@@ -114,19 +116,41 @@ return (
           justifyContent: 'center',
           alignItems: 'center',
         }}
-      >
-        <div className="card mx-auto" style={ {  width: '50%' }}>
-          <h2>{story.title}</h2>
-          <div className="card-body">
-            <p>{text}</p>
-          </div>
-          <button onClick={increaseCount}> Next Scene </button>
-          <button onClick={decrease}> last Scene </button>
-          {showButton && (
+      > { nextButton && (
+           <button className='position-absolute top-0 end-0 text-white rounded-pill '  style={{margin: '10px',  backgroundColor: 'rgba(0, 0, 0, 0.7)'}} onClick={increaseCount}> Next Scene </button>
+       
+     )}
+       
+       {showButton && (
             <Link to="/profile">
-              <button onClick={countToZero}> Profile</button>
+              <button className="position-absolute top-0 end-0 text-white rounded-pill btn-block btn-primary " style={{ margin: '10px', backgroundColor:'rgba(0, 0, 0, 0.7)',cursor: 'pointer'}} onClick={countToZero}> Profile</button>
             </Link>
           )}
+       
+       
+        <div className="card position-absolute bottom-0 start-0 " style={ { 
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        maxWidth: '33%',
+        width: 'auto',
+        maxHeight: '100vh',
+        overflowY: 'auto',
+        borderRadius: '10px',
+        margin: '10px',
+        }}
+        >
+          {/* <h2>{story.title}</h2> */}
+
+          <div className="card-body">
+            {storyText && (
+            <p className='text-white ' >{text}</p>
+                    )}
+          {theEnd &&(
+            <p className="text-white">Thank You for reading {story.title}</p>
+          )}
+          </div>
+       
+         
+       
         </div>
       </div>
     </div>
