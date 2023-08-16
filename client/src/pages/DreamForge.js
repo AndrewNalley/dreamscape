@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { CREATE_SCENE } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
 import { Link, Navigate, useParams } from 'react-router-dom'
@@ -33,6 +33,7 @@ const DreamForge = () => {
     const [bgImage, setImage] = useState('')
     const [sceneText, setText] = useState('')
     const [formSubmit, setFormSubmit] = useState(false)
+    const textInputRef = useRef(null)
     // const [currentImageIndex, setCurrentImageIndex] = useState(0);
     let subtitle
     const [modalIsOpen, setIsOpen] = React.useState(false)
@@ -66,6 +67,7 @@ const DreamForge = () => {
             setFormSubmit(true)
         }
         // setCurrentImageIndex(0);
+        textInputRef.current.value =''
     }
     const { storyId } = useParams()
     const handleAddScene = async () => {
@@ -77,8 +79,8 @@ const DreamForge = () => {
             },
            
         })
-        setImage("")
-        setText("")
+        setImage('')
+        setText('')
         console.log(storyId)
         console.log('scene added successfully!')
     }
@@ -146,7 +148,8 @@ const DreamForge = () => {
                 onSubmit={handleFormSubmit}
             >
                 <div className="col-12 col-lg-9">
-                    <input value={value} onInput={onInput} onSubmit={onSubmit} id="text"
+                    <input
+                        ref={textInputRef}
                         placeholder="choose text"
                         name="text"
                         className="form-input w-100"

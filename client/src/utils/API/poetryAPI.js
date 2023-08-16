@@ -11,8 +11,10 @@ function PoetryAPI() {
   useEffect(() => {
     if (buttonClicked) {
       async function fetchPoem() {
+        const cacheBuster = new Date().getTime(); // Generate a unique timestamp
+        const url = `https://poetrydb.org/random,linecount/1;5/author,title,lines?cache=${cacheBuster}`;
         try {
-          const response = await fetch('https://poetrydb.org/random/1/author,title,lines');
+          const response = await fetch(url);
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
@@ -40,16 +42,16 @@ function PoetryAPI() {
     }
   };
   console.log(poems);
-  
+
 
 
   return (
     <div>
-      <h1>Random Poem</h1>
+      <h2>Random Poem</h2>
       <button onClick={() => setButtonClicked(true)}>New Poem</button>
       <button onClick={handleSave}>Save Poem</button>
       <div className="poem-card">
-        <h2>{poems.title}</h2>
+        <h3>{poems.title}</h3>
         {poems.lines.map((line, index) => (
           <p key={index}>{line}</p>
         ))}
