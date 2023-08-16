@@ -24,6 +24,11 @@ const customStyles = {
 Modal.setAppElement('#root')
 
 const DreamForge = () => {
+    const [value, setValue] = useState("")
+    const onInput = (e) => setValue(e.target.value);
+    const onSubmit = () => {
+      setValue("");
+    };
     const [createScene] = useMutation(CREATE_SCENE)
     const [bgImage, setImage] = useState('')
     const [sceneText, setText] = useState('')
@@ -69,8 +74,11 @@ const DreamForge = () => {
                 storyId: storyId,
                 imagePath: bgImage,
                 text: sceneText
-            }
+            },
+           
         })
+        setImage("")
+        setText("")
         console.log(storyId)
         console.log('scene added successfully!')
     }
@@ -133,18 +141,18 @@ const DreamForge = () => {
 
 
             </div>
-            {/* <form
+            <form
                 className="flex-row justify-center justify-space-between-md align-center"
                 onSubmit={handleFormSubmit}
             >
                 <div className="col-12 col-lg-9">
-                    <input
+                    <input value={value} onInput={onInput} onSubmit={onSubmit} id="text"
                         placeholder="choose text"
                         name="text"
                         className="form-input w-100"
                     />
                 </div>
-            </form> */}
+            </form>
 
             <div className='flex-row'>
                 <div>Story Title</div>
