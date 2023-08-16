@@ -3,9 +3,14 @@ import { CREATE_SCENE } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import Modal from 'react-modal'
-import PoetryAPI from '../utils/API/poetryAPI'
+// import PoetryAPI from '../utils/API/poetryAPI'
 // Import the list of image filenames from the assets folder
 import { photoArray } from '../assets'
+import PoetryOptions from '../components/PoetryOptions'
+import PhotoModal from '../components/PhotoModal'
+import { poetryArray } from '../assets/poems'
+
+
 
 const customStyles = {
     content: {
@@ -102,6 +107,13 @@ const DreamForge = () => {
         console.log('Image saved:', savedImage);
     };
 
+    const saveText = (poem) => {
+      const savedText = poem
+      setText(savedText)
+      setFormSubmit(true)
+      console.log('Text saved:', savedText)
+    }
+
     return (
         <div
             className="bg-image" // You can create a CSS class named 'bg-image' for styling
@@ -119,7 +131,7 @@ const DreamForge = () => {
                     />
                 </div>
             </form> */}
-            <div>
+            {/* <div>
                 <button onClick={openModal}> Set Scene Image </button>
                 <Modal
                 isOpen={modalIsOpen}
@@ -142,7 +154,10 @@ const DreamForge = () => {
                 </Modal>
 
 
-            </div>
+            </div> */}
+            <PhotoModal
+            photoArray={photoArray}
+            saveImage={saveImage} />
             <form
                 className="flex-row justify-center justify-space-between-md align-center"
                 onSubmit={handleFormSubmit}
@@ -166,7 +181,10 @@ const DreamForge = () => {
                 <div className='m-2'>Text</div>
                 <div className='m-2'>Visual</div>
             </div>
-            <PoetryAPI />
+            <PoetryOptions 
+            poetryArray={poetryArray}
+            saveText={saveText}
+            />
             <div className='align-end justify-end'>Finish Story</div>
             <button onClick={handleAddScene}>
                 Next Scene
