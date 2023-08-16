@@ -11,8 +11,10 @@ function PoetryAPI() {
   useEffect(() => {
     if (buttonClicked) {
       async function fetchPoem() {
+        const cacheBuster = new Date().getTime(); // Generate a unique timestamp
+        const url = `https://poetrydb.org/random,linecount/1;20/author,title,lines?cache=${cacheBuster}`;
         try {
-          const response = await fetch('https://poetrydb.org/random/1/author,title,lines');
+          const response = await fetch(url);
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
@@ -40,7 +42,7 @@ function PoetryAPI() {
     }
   };
   console.log(poems);
-  
+
 
 
   return (
