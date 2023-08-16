@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { CREATE_SCENE } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
 import { Link, Navigate, useParams } from 'react-router-dom'
@@ -28,6 +28,7 @@ const DreamForge = () => {
     const [bgImage, setImage] = useState('')
     const [sceneText, setText] = useState('')
     const [formSubmit, setFormSubmit] = useState(false)
+    const textInputRef = useRef(null)
     // const [currentImageIndex, setCurrentImageIndex] = useState(0);
     let subtitle
     const [modalIsOpen, setIsOpen] = React.useState(false)
@@ -61,6 +62,7 @@ const DreamForge = () => {
             setFormSubmit(true)
         }
         // setCurrentImageIndex(0);
+        textInputRef.current.value =''
     }
     const { storyId } = useParams()
     const handleAddScene = async () => {
@@ -71,6 +73,8 @@ const DreamForge = () => {
                 text: sceneText
             }
         })
+        setImage('')
+        setText('')
         console.log(storyId)
         console.log('scene added successfully!')
     }
@@ -133,18 +137,19 @@ const DreamForge = () => {
 
 
             </div>
-            {/* <form
+            <form
                 className="flex-row justify-center justify-space-between-md align-center"
                 onSubmit={handleFormSubmit}
             >
                 <div className="col-12 col-lg-9">
                     <input
+                        ref={textInputRef}
                         placeholder="choose text"
                         name="text"
                         className="form-input w-100"
                     />
                 </div>
-            </form> */}
+            </form>
 
             <div className='flex-row'>
                 <div>Story Title</div>
