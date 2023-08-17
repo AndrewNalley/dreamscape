@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Link, Navigate, useNavigation } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useMutation  } from '@apollo/client';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
 import background from "../assets/images/tree.jpg"
 const HomePage = (props) => {
-  const navigate = useNavigation()
+  const navigate = useNavigate()
   const [formState, setFormState] = useState({ username: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN);
   const [loginError, setLoginError]= useState(false)
