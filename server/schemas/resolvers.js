@@ -27,7 +27,7 @@ const resolvers = {
             throw new AuthenticationError('Must log in!')
         },
         communityStories: async function () {
-            return await Story.find({ shared: true }).populate('scenes')
+            return await Story.find({}).populate('scenes')
         },
         story: async function (parent, args) {
             return await Story.findById(args.storyId).populate('scenes')
