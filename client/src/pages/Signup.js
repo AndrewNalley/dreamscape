@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , Navigate } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
@@ -12,7 +12,7 @@ const SignUp = () => {
    
     password: '',
   });
-  const [addUser, {error }] = useMutation(CREATE_USER);
+  const [addUser, {error, data }] = useMutation(CREATE_USER);
   const [loginError, setLoginError]= useState(false)
 
   const handleChange = (event) => {
@@ -33,7 +33,7 @@ const SignUp = () => {
         variables: { ...formState },
       })
       
-
+  
     Auth.login(data.createUser.token)
 
     
@@ -70,7 +70,12 @@ const SignUp = () => {
       
           <h4 className='text-white m-3'>Sign Up</h4>
        
-     
+          {data ? (
+            <p>
+              Success! You may now head{<Navigate to='/Profile' />}
+
+            </p>
+          ) :(
      
               <form className=' align-self-center ' onSubmit={handleFormSubmit}>
                 <input
@@ -90,9 +95,11 @@ const SignUp = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+              
                       { loginError && (
               <p className='text-danger'>This User Already Exist  </p>)
                 }
+              
                 <button
                   className="btn btn-block btn-primary m-2"
                   style={{ cursor: 'pointer' }}
@@ -100,7 +107,9 @@ const SignUp = () => {
                 >
                   Sign-Up
                 </button>
+               
               </form>
+          )}
             
 
             
