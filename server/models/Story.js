@@ -13,7 +13,7 @@ const storySchema = new Schema({
     },
     username:{
         type: String,
-        required: true
+        ref: 'User'
     },
     scenes: [{
         type: Types.ObjectId,
