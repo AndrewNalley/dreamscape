@@ -30,6 +30,9 @@ const Credits = () => {
           <div  className="card mb-3">
        <h2>{ username }</h2>
               <div className='rounded-circle bg-primary '></div>
+              <Link to="/profile">
+              <button className="position-absolute top-0 end-0 text-white rounded-pill btn-block btn-primary " style={{ margin: '10px', backgroundColor:'rgba(0, 0, 0, 0.7)',cursor: 'pointer'}}> Profile</button>
+              </Link>
       </div>
       </>
   )
