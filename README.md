@@ -1,156 +1,83 @@
-# 23 Final Project: MERN Stack Single-Page Application
+# DreamScape
 
-Projects have played a key role in your journey to becoming a full-stack web developer. As you apply for development jobs, your portfolio is absolutely vital to opening doors to opportunities. Your portfolio showcases high-quality deployed examples of your work, and you can use your finished projects for that very purpose.
 
-This project is a fantastic opportunity to show employers your collaborative skills and coding abilities, especially in the context of a scalable, user-focused MERN app. Remember that employers want to see what you can do, but they also want to see how you work with other developers. The more examples of deployed collaborative work you have in your portfolio, the more likely you are to get an interview and a job.
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## Project Requirements
 
-Your group will use everything you've learned throughout this course to create a MERN stack single-page application that works with real-world data to solve a real-world challenge, with a focus on data and user demand. This project will provide you with the best opportunity to demonstrate your problem-solving skills, which employers will want to see during interviews. Once again, the user story and acceptance criteria will depend on the project that you create, but your project must fulfill the following requirements:
+## Description
 
-* Use React for the front end.
 
-* Use GraphQL with a Node.js and Express.js server.
+Welcome to DreamScape! DreamScape is a web based application built using the MERN stack designed to help you on your mindfulness journey. Build and experience stories crafted by other users as you practice mindfulness.
 
-* Use MongoDB and the Mongoose ODM for the database.
 
-* Use queries and mutations for retrieving, adding, updating, and deleting data.
+## Table of Contents
 
-* Be deployed using Heroku (with data).
+  1. [Usage](#usage)
+  2. [Authors](#authors)
+  3. [Technologies](#technologies)
+  4. [License](#license)
+  5. [Questions](#questions)
 
-* Have a polished UI.
 
-* Be responsive.
 
-* Be interactive (i.e., accept and respond to user input).
+## Usage
 
-* Include authentication (JWT).
 
-* Protect sensitive API key information on the server.
+In order to use this application, navigate to the following link:
 
-* Have a clean repository that meets quality coding standards (file structure, naming conventions, best practices for class and id naming conventions, indentation, high-quality comments, etc.).
+https://whispering-crag-58704-755d34513186.herokuapp.com/
 
-* Have a high-quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
+Following this link should bring you to a landing page like the image below:
+![alt text](client/src/assets/images/Dreamscape_Landing_Page.PNG)
 
-### CSS Styling
+If you are an existing user, you may sign in from the form provided. Otherwise, follow the "Sign Up" button to create a new user.
 
-Instead of using a CSS library like Bootstrap, consider one of the following suggestions:
+Once a user is signed in, you will be navigated to your Profile page. The profile page is your main hub for all interaction with the application. You can view stories that you have created directly from this page, name and begin to create new stories yourself, or view publically available stories created by other users.
 
-* Look into the concept of CSS-in-JS, which abstracts CSS to the component level, using JavaScript to describe styles in a declarative and maintainable way. Some popular libraries include [styled-components](https://styled-components.com/) and [Emotion](https://emotion.sh/docs/introduction).
+By adding a new Story Title, you will be prompted to add scenes to your new Story. This will navigate you to the DreamForge. The DreamForge is your tool to creating your mindfullness journey stories. Here you must add images and optionally add text (or select from various options of poems). If you would like to add more than one scene, select the 'Next Scene' button. This will save your scene to your story and allow you to create another scene. Add as many scenes as you would like.
 
-* Try using a component library, such as [Semantic UI](https://semantic-ui.com/), [Chakra UI](https://chakra-ui.com/), or [Ant Design](https://ant.design/).
+When you have completed the last scene you would like to have on your Story, click the 'Finish Story' button. This will complete your story and return you to your Profile hub. Your new story will appear on your Profile page after a few seconds. Clicking on any of your stories (or on any stories from the Story Well) will allow you to experience the Story.
 
-* Create all the CSS for your application just using CSS.
 
-Ultimately, it doesn't matter which of these options you choose&mdash;it just needs to look professional and be mobile-friendly.
+## Authors
 
-### Payment Platform
 
-Consider integrating the Stripe payment platform. Even if you don't create an e-commerce application, you could set up your site to accept charitable donations.
+[Andrew Nalley](https://github.com/AndrewNalley)
 
-### Bonus
+[Andrew Brandstrom](https://github.com/abrand93)
 
-Although this is not a requirement for your project, see if you can also implement functionality to meet the minimum requirements of a PWA:
+[Chanse Shirley](https://github.com/CaptainFlint1715)
 
-* Uses a web manifest
+[Nick Reece](https://github.com/nreece6)
 
-* Uses a service worker for offline functionality
+[Toumeng Yeng](https://github.com/2meng)
 
-* Is installable
 
-## Presentation Requirements
+## Technologies
 
-Use this [project presentation template](https://docs.google.com/presentation/d/10QaO9KH8HtUXj__81ve0SZcpO5DbMbqqQr4iPpbwKks/edit?usp=sharing) to address the following:
 
-* Elevator pitch: a one minute description of your application
+**Client:** React, BootstrapCSS
 
-* Concept: What is your user story? What was your motivation for development?
+**Server:** Node, Express, Mongoose
 
-* Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
+## License
 
-* Demo: Show your stuff!
+https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 
-* Directions for Future Development
+MIT License
 
-* Links to the deployed application and the GitHub repository. Use the [Guide to Deploy with Heroku and MongoDB Atlas](https://coding-boot-camp.github.io/full-stack/mongodb/deploy-with-heroku-and-mongodb-atlas) on The Full-Stack Blog if you need a reminder on how to deploy to Heroku.
+Copyright (c) 2021 Othneil Drew
 
-## Grading Requirements
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-This project is graded based on the following criteria:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-### Technical Acceptance Criteria: 25%
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-* Satisfies the following code requirements:
+## Questions
 
-  * Application uses React for the front end.
+Questions? Feel free to message any of the Authors on GitHub.
 
-  * Application has a GraphQL API with a Node.js and Express.js server, and uses queries and mutations for retrieving, adding, updating, and deleting data.
 
-  * Application uses MongoDB and the Mongoose ODM for the database and protects sensitive API key information on the server.
 
-  * Application includes user authentication using JWT.
-
-### Concept 10%
-
-* Application should be a unique and novel idea.
-
-* Your group should clearly and concisely articulate your project idea.
-
-### Deployment: 20%
-
-* Application deployed at live URL on Heroku and loads with no errors.
-
-* Application GitHub URL submitted.
-
-### Repository Quality: 10%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class and id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains a high-quality README file with description, screenshot, and link to deployed application.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application is responsive.
-
-### Presentation 10%
-
-* Your group should present using a slide deck.
-
-* Every group member should speak during the presentation.
-
-* Your presentation should follow the [Project Presentation Template](https://docs.google.com/presentation/d/10QaO9KH8HtUXj__81ve0SZcpO5DbMbqqQr4iPpbwKks/edit?usp=sharing).
-
-### Collaboration 10%
-
-* There are no major disparities in the number of GitHub contributions between group members.
-
-### Bonus
-
-Fulfilling all three of the following requirements to turn your app into a PWA will add 10 points to your grade. Note that the highest grade you can achieve is still a 100:
-
-* Uses a web manifest
-
-* Uses a service worker for offline functionality
-
-* Is installable
-
-## How to Submit Your MERN Stack Single-Page Application
-
-**Each member of your group** is required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository, with a unique name and a README describing the project.
-
----
-© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+Thank you for viewing our application! 
