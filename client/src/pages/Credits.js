@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { GET_ME, QUERY_USERID, GET_SCENE, GET_STORY } from '../utils/queries'
 import { useQuery } from '@apollo/client';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { photoArray } from '../assets'
 
 import background from "../assets/images/clapBoard.jpg"
 
@@ -37,7 +36,7 @@ const Credits = () => {
       
   
        <h3 className='text-white m-1'> Created By: { username }</h3>
-       <h4 className='text-white m-1'> Images Provide by Pixabay </h4>
+       <h4 className='text-white m-1'> Images provided by Pixabay </h4>
               <div className='rounded-circle bg-primary '></div>
               <Link to="/profile">
               <button className=" text-white rounded-pill btn-block btn-primary " style={{ margin: '10px', backgroundColor:'rgba(0, 0, 0, 0.7)',cursor: 'pointer'}}> Return to Profile</button>

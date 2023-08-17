@@ -160,4 +160,4 @@ const photoArray = [
 ]
 
 
-export default { photoArray };
+export { photoArray };

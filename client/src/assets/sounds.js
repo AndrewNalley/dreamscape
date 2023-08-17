@@ -37,4 +37,4 @@ const soundArray = [
     river
 ]
 
-export default { soundArray } 
+export { soundArray } 

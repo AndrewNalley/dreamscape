@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { GET_ME, QUERY_USER, GET_SCENE, GET_STORY } from '../utils/queries'
 import { useQuery } from '@apollo/client';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { photoArray } from '../assets'
 
 
 const Scene = (props) => {
