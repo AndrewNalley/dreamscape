@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import UserJourneys from '../components/UserJourneys'
 // import { Button } from 'react-bootstrap'
 import { GET_ME, QUERY_USER } from '../utils/queries'
@@ -26,9 +26,10 @@ const Profile = () => {
   const { username: userParam } = useParams()
   const [createdStoryId, setCreatedStoryId] = useState('')
   const [createdStoryTitle, setCreatedStoryTitle] = useState('')
-
+  const [userRefresh, setUserRefresh] = useState(true)
   const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
     variables: { username: userParam },
+    pollInterval: 2000
   })
 
   const [createStory] = useMutation(CREATE_STORY)
@@ -36,11 +37,10 @@ const Profile = () => {
 
 
 
-  const user = data?.me || data?.user || {}
+  let user = data?.me || data?.user || {}
   console.log(user)
-  // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-  //     return <Navigate to='/Profile' />
-  // }
+
+
 
   const logout = (event) => {
     event.preventDefault();
