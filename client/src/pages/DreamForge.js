@@ -67,7 +67,7 @@ const DreamForge = () => {
         if (event.target.elements.text) {
             const textValue = event.target.elements.text.value
             console.log(textValue)
-            const formattedText = textValue.replace(/-/g, '<br>');
+            const formattedText = textValue.replace(/=/g, '<br>');
             setText(formattedText);
             setFormSubmit(true)
         }
@@ -90,15 +90,6 @@ const DreamForge = () => {
         console.log('scene added successfully!')
     }
 
-    // const changeBackgroundImage = (index) => {
-    //     setImage(photoArray[index]);
-    //     setCurrentImageIndex(index);
-    // };
-
-    // const navigateImages = (increment) => {
-    //     const newIndex = (currentImageIndex + increment + photoArray.length) % photoArray.length;
-    //     changeBackgroundImage(newIndex);
-    // };
 
     const saveImage = (p) => {
         // save the currently set background image (bgImage) to a variable for later use
@@ -109,7 +100,8 @@ const DreamForge = () => {
 
     const saveText = (poem) => {
       const savedText = poem
-      setText(savedText)
+      const poemText = savedText.replace(/=/g, '<br>')
+      setText(poemText)
       setFormSubmit(true)
       console.log('Text saved:', savedText)
     }
@@ -119,42 +111,6 @@ const DreamForge = () => {
             className="bg-image" // You can create a CSS class named 'bg-image' for styling
             style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover', minHeight: '100vh' }}
         >
-            {/* <form
-                className="flex-row justify-center justify-space-between-md align-center"
-                onSubmit={handleFormSubmit}
-            >
-                <div className="col-12 col-lg-9">
-                    <input
-                        placeholder="choose image"
-                        name="image"
-                        className="form-input w-100"
-                    />
-                </div>
-            </form> */}
-            {/* <div>
-                <button onClick={openModal}> Set Scene Image </button>
-                <Modal
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel='Image Selection Modal'>
-                    <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-                     <button onClick={closeModal}>close</button>
-                <div>Select an image for your scene.</div>
-                <form>
-                <div className='d-flex row align-items-center'>
-                {(photoArray).map((photo) => (
-                <img onClick={() => saveImage(photo)} key={photo.id} src={photo.url} className="card mb-3 d-flex col-2" />
-                  
-                ))}
-            </div>
-            
-            </form>
-                </Modal>
-
-
-            </div> */}
             <PhotoModal
             photoArray={photoArray}
             saveImage={saveImage} />
