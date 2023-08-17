@@ -142,7 +142,7 @@ return (
 
           <div className="card-body">
             {storyText && (
-            <p className='text-white ' >{text}</p>
+            <p className='text-white ' dangerouslySetInnerHTML={{ __html: text }}/>
                     )}
           {theEnd &&(
             <p className="text-white">Thank You for reading {story.title}</p>
