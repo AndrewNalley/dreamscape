@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import { GET_ME, QUERY_USERID, GET_SCENE, GET_STORY } from '../utils/queries'
 import { useQuery } from '@apollo/client';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { photoArray } from '../assets'
 
-
+import background from "../assets/images/clapBoard.jpg"
 
 
 
@@ -25,15 +24,26 @@ const Credits = () => {
 
   return (
       <>
-      <h2>{story.title}</h2>
+     <div style= {{backgroundImage:`url(${background})`, backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          backgroundPosition: 'center',
+          width: '100%',
+          height: '100vh',
+          }}>
+        <div className="position-absolute top-50 start-50 translate-middle" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', width: '30', }}>
+      <h2 className='text-white m-1'>Thanks for experiencing: {story.title}</h2>
       
-          <div  className="card mb-3">
-       <h2>{ username }</h2>
+  
+       <h3 className='text-white m-1'> Created By: { username }</h3>
+       <h4 className='text-white m-1'> Images provided by Pixabay </h4>
               <div className='rounded-circle bg-primary '></div>
               <Link to="/profile">
-              <button className="position-absolute top-0 end-0 text-white rounded-pill btn-block btn-primary " style={{ margin: '10px', backgroundColor:'rgba(0, 0, 0, 0.7)',cursor: 'pointer'}}> Profile</button>
+              <button className=" text-white rounded-pill btn-block btn-primary " style={{ margin: '10px', backgroundColor:'rgba(0, 0, 0, 0.7)',cursor: 'pointer'}}> Return to Profile</button>
               </Link>
       </div>
+      </div>
+
       </>
   )
 }
