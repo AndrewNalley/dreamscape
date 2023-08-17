@@ -1,11 +1,16 @@
 import React, { useState, useRef } from 'react'
 import { CREATE_SCENE } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams, useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
-import PoetryAPI from '../utils/API/poetryAPI'
+// import PoetryAPI from '../utils/API/poetryAPI'
 // Import the list of image filenames from the assets folder
 import { photoArray } from '../assets'
+import PoetryOptions from '../components/PoetryOptions'
+import PhotoModal from '../components/PhotoModal'
+import { poetryArray } from '../assets/poems'
+
+
 
 const customStyles = {
     content: {
@@ -24,7 +29,11 @@ const customStyles = {
 Modal.setAppElement('#root')
 
 const DreamForge = () => {
- 
+    const [value, setValue] = useState("")
+    const onInput = (e) => setValue(e.target.value);
+    const onSubmit = () => {
+        setValue("");
+    };
     const [createScene] = useMutation(CREATE_SCENE)
     const [bgImage, setImage] = useState('')
     const [sceneText, setText] = useState('')
@@ -33,7 +42,7 @@ const DreamForge = () => {
     // const [currentImageIndex, setCurrentImageIndex] = useState(0);
     let subtitle
     const [modalIsOpen, setIsOpen] = React.useState(false)
-    
+
     function openModal() {
         setIsOpen(true)
     }
@@ -58,22 +67,22 @@ const DreamForge = () => {
         if (event.target.elements.text) {
             const textValue = event.target.elements.text.value
             console.log(textValue)
-            const formattedText = textValue.replace(/-/g, '<br>');
+            const formattedText = textValue.replace(/=/g, '<br>');
             setText(formattedText);
             setFormSubmit(true)
         }
         // setCurrentImageIndex(0);
-        textInputRef.current.value =''
+        textInputRef.current.value = ''
     }
     const { storyId } = useParams()
     const handleAddScene = async () => {
-        createScene({
+        await createScene({
             variables: {
                 storyId: storyId,
                 imagePath: bgImage,
                 text: sceneText
             },
-           
+
         })
         setImage('')
         setText('')
@@ -81,15 +90,6 @@ const DreamForge = () => {
         console.log('scene added successfully!')
     }
 
-    // const changeBackgroundImage = (index) => {
-    //     setImage(photoArray[index]);
-    //     setCurrentImageIndex(index);
-    // };
-
-    // const navigateImages = (increment) => {
-    //     const newIndex = (currentImageIndex + increment + photoArray.length) % photoArray.length;
-    //     changeBackgroundImage(newIndex);
-    // };
 
     const saveImage = (p) => {
         // save the currently set background image (bgImage) to a variable for later use
@@ -98,47 +98,31 @@ const DreamForge = () => {
         console.log('Image saved:', savedImage);
     };
 
+    const saveText = (poem) => {
+        const savedText = poem
+        const poemText = savedText.replace(/=/g, '<br>')
+        setText(poemText)
+        setFormSubmit(true)
+        console.log('Text saved:', savedText)
+    }
+    let navigate = useNavigate();
+    const routeChange = () => {
+        let path = `/Profile`;
+        navigate(path);
+    }
+    const finishStory = () => {
+       handleAddScene()
+       routeChange()
+    }
+
     return (
         <div
             className="bg-image" // You can create a CSS class named 'bg-image' for styling
             style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover', minHeight: '100vh' }}
         >
-            {/* <form
-                className="flex-row justify-center justify-space-between-md align-center"
-                onSubmit={handleFormSubmit}
-            >
-                <div className="col-12 col-lg-9">
-                    <input
-                        placeholder="choose image"
-                        name="image"
-                        className="form-input w-100"
-                    />
-                </div>
-            </form> */}
-            <div>
-                <button onClick={openModal}> Set Scene Image </button>
-                <Modal
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel='Image Selection Modal'>
-                    <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-                     <button onClick={closeModal}>close</button>
-                <div>Select an image for your scene.</div>
-                <form>
-                <div className='d-flex row align-items-center'>
-                {(photoArray).map((photo) => (
-                <img onClick={() => saveImage(photo)} key={photo.id} src={photo.url} className="card mb-3 d-flex col-2" />
-                  
-                ))}
-            </div>
-            
-            </form>
-                </Modal>
-
-
-            </div>
+            <PhotoModal
+                photoArray={photoArray}
+                saveImage={saveImage} />
             <form
                 className="flex-row justify-center justify-space-between-md align-center"
                 onSubmit={handleFormSubmit}
@@ -162,12 +146,15 @@ const DreamForge = () => {
                 <div className='m-2'>Text</div>
                 <div className='m-2'>Visual</div>
             </div>
-            <PoetryAPI />
+            <PoetryOptions
+                poetryArray={poetryArray}
+                saveText={saveText}
+            />
             <div className='align-end justify-end'>Finish Story</div>
             <button onClick={handleAddScene}>
                 Next Scene
             </button>
-            <button onClick=''>
+            <button onClick={finishStory}>
                 Finish Story
             </button>
             {formSubmit && (

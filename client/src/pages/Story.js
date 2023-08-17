@@ -114,8 +114,8 @@ return (
           {/* <h2>{story.title}</h2> */}
 
           <div className="card-body">
-             {storyText && (
-            <p className='text-white ' >{text}</p>
+            {storyText && (
+            <p className='text-white ' dangerouslySetInnerHTML={{ __html: text }}/>
                     )}
          
           </div>
