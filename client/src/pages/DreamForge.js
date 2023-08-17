@@ -3,12 +3,11 @@ import { CREATE_SCENE } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
 import { Link, Navigate, useParams, useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
-// import PoetryAPI from '../utils/API/poetryAPI'
-// Import the list of image filenames from the assets folder
 import { photoArray } from '../assets'
 import PoetryOptions from '../components/PoetryOptions'
 import PhotoModal from '../components/PhotoModal'
-import { poetryArray } from '../assets/poems'
+import { poetryArray } from '../assets'
+import { soundArray } from '../assets'
 
 
 
