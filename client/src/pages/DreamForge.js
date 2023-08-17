@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { CREATE_SCENE } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams, useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
 // import PoetryAPI from '../utils/API/poetryAPI'
 // Import the list of image filenames from the assets folder
@@ -32,7 +32,7 @@ const DreamForge = () => {
     const [value, setValue] = useState("")
     const onInput = (e) => setValue(e.target.value);
     const onSubmit = () => {
-      setValue("");
+        setValue("");
     };
     const [createScene] = useMutation(CREATE_SCENE)
     const [bgImage, setImage] = useState('')
@@ -42,7 +42,7 @@ const DreamForge = () => {
     // const [currentImageIndex, setCurrentImageIndex] = useState(0);
     let subtitle
     const [modalIsOpen, setIsOpen] = React.useState(false)
-    
+
     function openModal() {
         setIsOpen(true)
     }
@@ -72,17 +72,17 @@ const DreamForge = () => {
             setFormSubmit(true)
         }
         // setCurrentImageIndex(0);
-        textInputRef.current.value =''
+        textInputRef.current.value = ''
     }
     const { storyId } = useParams()
     const handleAddScene = async () => {
-        createScene({
+        await createScene({
             variables: {
                 storyId: storyId,
                 imagePath: bgImage,
                 text: sceneText
             },
-           
+
         })
         setImage('')
         setText('')
@@ -99,11 +99,20 @@ const DreamForge = () => {
     };
 
     const saveText = (poem) => {
-      const savedText = poem
-      const poemText = savedText.replace(/=/g, '<br>')
-      setText(poemText)
-      setFormSubmit(true)
-      console.log('Text saved:', savedText)
+        const savedText = poem
+        const poemText = savedText.replace(/=/g, '<br>')
+        setText(poemText)
+        setFormSubmit(true)
+        console.log('Text saved:', savedText)
+    }
+    let navigate = useNavigate();
+    const routeChange = () => {
+        let path = `/Profile`;
+        navigate(path);
+    }
+    const finishStory = () => {
+       handleAddScene()
+       routeChange()
     }
 
     return (
@@ -112,8 +121,8 @@ const DreamForge = () => {
             style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover', minHeight: '100vh' }}
         >
             <PhotoModal
-            photoArray={photoArray}
-            saveImage={saveImage} />
+                photoArray={photoArray}
+                saveImage={saveImage} />
             <form
                 className="flex-row justify-center justify-space-between-md align-center"
                 onSubmit={handleFormSubmit}
@@ -137,15 +146,15 @@ const DreamForge = () => {
                 <div className='m-2'>Text</div>
                 <div className='m-2'>Visual</div>
             </div>
-            <PoetryOptions 
-            poetryArray={poetryArray}
-            saveText={saveText}
+            <PoetryOptions
+                poetryArray={poetryArray}
+                saveText={saveText}
             />
             <div className='align-end justify-end'>Finish Story</div>
             <button onClick={handleAddScene}>
                 Next Scene
             </button>
-            <button onClick=''>
+            <button onClick={finishStory}>
                 Finish Story
             </button>
             {formSubmit && (
