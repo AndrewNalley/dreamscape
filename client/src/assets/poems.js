@@ -251,4 +251,4 @@ const poetryArray = [
         persimmons,
     ]
 
-export { poetryArray }
+export default { poetryArray }
