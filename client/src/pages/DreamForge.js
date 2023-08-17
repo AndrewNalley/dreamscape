@@ -24,11 +24,7 @@ const customStyles = {
 Modal.setAppElement('#root')
 
 const DreamForge = () => {
-    const [value, setValue] = useState("")
-    const onInput = (e) => setValue(e.target.value);
-    const onSubmit = () => {
-      setValue("");
-    };
+ 
     const [createScene] = useMutation(CREATE_SCENE)
     const [bgImage, setImage] = useState('')
     const [sceneText, setText] = useState('')

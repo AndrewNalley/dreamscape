@@ -11,6 +11,10 @@ const storySchema = new Schema({
         ref: 'User',
         required: true
     },
+    username:{
+        type: String,
+        required: true
+    },
     scenes: [{
         type: Types.ObjectId,
         ref: 'Scene',

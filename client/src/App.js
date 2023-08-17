@@ -13,7 +13,7 @@ import {
 
 import { setContext } from "@apollo/client/link/context";
 
-import { Audio, DreamForge, HomePage, Profile, Scene, SignUp, StoryWell, Text, Visual } from './pages'
+import {  DreamForge, HomePage, Profile, Scene, SignUp, StoryWell, Credits } from './pages'
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -50,20 +50,14 @@ const router = createBrowserRouter([
   path:"/storyWell",
   element: <StoryWell />
 },
-{
-  path:"visual",
-  element: <Visual />
-},
-{
-  path:"text",
-  element: <Text />
-},
+
+
 {
   path:"/story/:storyId",
   element:<Scene />
 },
 {
-  path: "Profile",
+  path: "/Profile",
   element: <Profile />
 },
 {
@@ -71,9 +65,10 @@ const router = createBrowserRouter([
   element: <DreamForge />
 },
 {
-  path:"Audio",
-  element: <Audio />
-},
+  path: "/credits/:storyId",
+  element: <Credits/>
+}
+
 
 ])
 

@@ -72,7 +72,9 @@ const resolvers = {
             return { token, user }
         },
         createStory: async function (parent, { title }, context) {
-            const story = await Story.create({ title, user: context.user._id }) // do same here as below
+            const user = await User.findById(context.user._id)
+            const username = user.username
+            const story = await Story.create({ title, user: context.user._id, username }) // do same here as below
             await User.findByIdAndUpdate(
                 context.user._id,
                 { $addToSet: { stories: story._id } },
