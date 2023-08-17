@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigation } from 'react-router-dom';
 import { useMutation  } from '@apollo/client';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
 import background from "../assets/images/tree.jpg"
 const HomePage = (props) => {
+  const navigate = useNavigation()
   const [formState, setFormState] = useState({ username: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN);
   const [loginError, setLoginError]= useState(false)
@@ -28,16 +29,16 @@ const HomePage = (props) => {
       });
 
       Auth.login(data.login.token);
+      navigate('/Profile')
     } catch (error) {
+      // clear form values
+      setFormState({
+        username: '',
+        password: '',
+      });
       setLoginError(true)
       console.error(error);
     }
-
-    // clear form values
-    setFormState({
-      username: '',
-      password: '',
-    });
   };
   const logout = (event) => {
     event.preventDefault();
