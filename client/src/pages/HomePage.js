@@ -66,20 +66,6 @@ const HomePage = (props) => {
           height: '100vh',
         }}>
           <h1 className='px-4 py-3 text-center text-white'>DREAMSCAPE</h1>
-          {/* <p className='d-flex justify-content-center text-info bg-dark m-3'>
-          Imagine escaping to a tranquil paradise, where the worries of everyday life fade away and serenity takes over. Welcome to Dreamsacpe, a place where you can truly unwind, recharge, and find inner peace amidst the beauty of nature.</p> */}
-
-          {/* 
-<Link className='px-1' to="/signUp">New To Dreamscape Sign Up today</Link>
-<Link className='px-1' to="/storyWell">StoryWell</Link>
-<Link className='px-1' to="/visual">Visual</Link>
-<Link className='px-1' to="/text">Text</Link>
-<Link className='px-1' to="/scene">Scene</Link>
-<Link className='px-1' to="/Profile">Profile</Link>
-<Link className='px-1' to="/Preview">Preview</Link>
-<Link className='px-1' to="/DreamForge">DreamForge</Link>     
-<Link className='px-1' to="/Demo">Demo</Link>
-<Link className='px-1' to="/Audio">Audio</Link> */}
 
           {data ? (
             <p>
@@ -130,7 +116,6 @@ const HomePage = (props) => {
                     </button>
                   </Link>
                 </div>
-
               </form>
             </div>
           )}
