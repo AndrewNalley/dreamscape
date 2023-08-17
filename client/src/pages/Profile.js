@@ -29,7 +29,7 @@ const Profile = () => {
   const [userRefresh, setUserRefresh] = useState(true)
   const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
     variables: { username: userParam },
-    pollInterval: 5000
+    // pollInterval: 8000
   })
 
   const [createStory] = useMutation(CREATE_STORY)

@@ -18,10 +18,10 @@ const resolvers = {
                 })
 
 
-                const storiesToDelete = user.stories.filter((story) => story.scenes.length === 0)
-                await Promise.all(storiesToDelete.map(async (story) => {
-                    await Story.findOneAndDelete({ _id: story._id });
-                }))
+                // const storiesToDelete = user.stories.filter((story) => story.scenes.length === 0)
+                // await Promise.all(storiesToDelete.map(async (story) => {
+                //     await Story.findOneAndDelete({ _id: story._id });
+                // }))
                 return user
             }
             throw new AuthenticationError('Must log in!')
