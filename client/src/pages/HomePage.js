@@ -121,12 +121,9 @@ const HomePage = (props) => {
             </div>
           )}
           <div className="card mx-auto text-white my-3 p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', width: '25%', }}>
-            <h2 className='text-underline'>How to create a story!</h2> 
-            <p>Once you have created an account or are logged in.. <br/> <br/>
-            <span>You can then go to the DreamForge and forge your own Dreamscape to share your journey with other users!</span> <br/> <br/>
-            <span>Select though one of many background images that you can use to start your journey..!</span> <br/> <br/>
-            <span>Then create your environment with text or choose from one of the poems that we've created for you..!</span> <br/> <br/>
-            <span>Once you've created your first scene.. you can choose to create more or finish your story there for other users to experience..!</span></p> 
+            <h2 className='text-underline'>Welcome to Dreamscape!</h2> 
+            <p>Utilize the Dreamforge to craft new mindfulness journeys. <br/> <br/>
+            <span>Create your own calming and inspirational environments.</span> <br/> <br/></p> 
           </div>
         </div>
       </div>
