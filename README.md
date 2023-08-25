@@ -15,8 +15,9 @@ Welcome to DreamScape! DreamScape is a web based application built using the MER
   1. [Usage](#usage)
   2. [Authors](#authors)
   3. [Technologies](#technologies)
-  4. [License](#license)
-  5. [Questions](#questions)
+  4. [Credits](#credits)
+  5. [License](#license)
+  6. [Questions](#questions)
 
 
 
@@ -59,6 +60,11 @@ When you have completed the last scene you would like to have on your Story, cli
 **Client:** React, BootstrapCSS
 
 **Server:** Node, Express, Mongoose
+
+## Credits
+
+Neon Text: https://css-tricks.com/how-to-create-neon-text-with-css/
+
 
 ## License
 

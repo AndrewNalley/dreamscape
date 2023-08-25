@@ -9,7 +9,7 @@ import {
   RouterProvider,
   Link,
 } from "react-router-dom";
-
+import "./App.css"
 
 import { setContext } from "@apollo/client/link/context";
 
