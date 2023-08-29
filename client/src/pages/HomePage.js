@@ -120,7 +120,7 @@ const HomePage = (props) => {
               </form>
             </div>
           )}
-          <div className="card mx-auto  my-3 p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', }}>
+          <div className="card mx-auto align-items-center my-3 p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', }}>
             <h2>Welcome to Dreamscape!</h2> <br/> 
             <p>Craft mindfulness journeys in the DreamForge <br/><br/>
             Join an inspiring and supportive community<br/> <br/></p> 
