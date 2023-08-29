@@ -116,8 +116,8 @@ const Profile = () => {
           Logout
         </button>
       </div>
-      <div className='d-flex flex-row justify-content-center mt-4' style={{ minHeight: '300px' }}>
-        <div className='d-flex flex-column align-items-center justify-content-center w-25'>
+      <div className='d-flex row mt-4 justify-content-center' style={{ minHeight: '300px' }}>
+        <div className='col-md-4 mb-3 d-flex flex-column align-items-center justify-content-center'>
           {/* Add Story */}
           {createdStoryId ? (
             <Link to={`/dreamforge/${createdStoryId}`}>
@@ -140,7 +140,7 @@ const Profile = () => {
             
           )}
         </div>
-        <div className='d-flex flex-column align-items-center w-25'>
+        <div className='col-md-4 mb-3 d-flex flex-column align-items-center justify-content-center'>
           {/* Dreamscapes */}
           <div>
             <h3 className='p-2 shadow-lg w-auto card mx-2 mt-4 mb-2' style={{ backgroundColor: 'black', color: '#fa0f5d', fontSize: '2em', fontWeight: 'bold', borderRadius: '15px' }}>DREAMSCAPES</h3>
@@ -157,7 +157,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className='d-flex flex-column align-items-center justify-content-center w-25 p-4' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <div className='col-md-4 mb-3 d-flex flex-column p-4' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
           {/* Community */}
           <Link className='card text-center' style={{ ...linkStyle, backgroundColor: 'black', color: '#fa0f5d', fontSize: '1.6em', fontWeight: 'bold', maxWidth: '200px', borderRadius: '20px', transition: 'box-shadow 0.3s ease', boxShadow: '0 0 10px #a903fc, 0 0 20px #a903fc', }} to='/storyWell'>
             <div className='d-flex flex-column align-items-center p-2' style={{ color: '#a00ffa' }}>
