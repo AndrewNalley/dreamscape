@@ -14,37 +14,40 @@ const Credits = () => {
       variables: { storyId }
 
 
-  })
+    })
   const story = data?.story || {}
- const username = story?.username
+  const username = story?.username
 
 
 
 
 
   return (
-      <>
-     <div style= {{backgroundImage:`url(${background})`, backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
-          backgroundPosition: 'center',
-          width: '100%',
-          height: '100vh',
-          }}>
-        <div className="position-absolute top-50 start-50 translate-middle" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', width: '30', }}>
-      <h2 className='text-white m-1'>Thanks for experiencing: {story.title}</h2>
-      
-  
-       <h3 className='text-white m-1'> Created By: { username }</h3>
-       <h4 className='text-white m-1'> Images provided by Pixabay </h4>
-              <div className='rounded-circle bg-primary '></div>
+    <>
+      <div style={{
+        backgroundImage: `url(${background})`, backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        backgroundPosition: 'center',
+        width: '100%',
+        height: '100vh',
+      }}>
+        <div className='rounded-circle bg-primary '></div>
               <Link to="/profile">
-              <button className=" text-white rounded-pill btn-block btn-primary " style={{ margin: '10px', backgroundColor:'rgba(0, 0, 0, 0.7)',cursor: 'pointer'}}> Return to Profile</button>
+              <button className='position-absolute top-0 end-0 text-white rounded-pill '  style={{margin: '10px',  backgroundColor: 'rgba(0, 0, 0, 0.7)'}}> Return to Profile</button>
               </Link>
-      </div>
+        <div className="position-absolute top-50 start-50 translate-middle" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', width: '30', }}>
+          <h3 className='text-white m-1'>You experienced:</h3>
+          <br />
+          <h1 className='text-white m-1 text-center'> {story.title}</h1>
+          <br />
+          <h4 className='text-white m-1 text-center'> Created By: {username}</h4>
+          <br />
+          <h6 className='text-white m-1 text-center'> Images provided by Pixabay </h6>
+        </div>
       </div>
 
-      </>
+    </>
   )
 }
 
