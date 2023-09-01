@@ -102,7 +102,7 @@ return (
          {hideDiv && (
         <div className="card position-absolute bottom-0 start-0 " style={ { 
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        maxWidth: '33%',
+        maxWidth: '75%',
         width: 'auto',
         maxHeight: '100vh',
         overflowY: 'auto',
