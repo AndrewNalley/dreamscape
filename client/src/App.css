@@ -15,3 +15,16 @@ h6 {
       0 0 102px #a00ffa,
       0 0 151px #a00ffa;
   }
+
+p {
+  color: #fff;
+  text-shadow:
+    0 0 0.5px #fff,
+    0 0 1px #fff,
+    0 0 2px #fff,
+    0 0 3px #2d46ab,
+    0 0 5px #2d46ab,
+    0 0 9px #2d46ab,
+    0 0 14px #2d46ab,
+    0 0 20px #2d46ab;
+}
