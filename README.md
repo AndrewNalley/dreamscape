@@ -26,7 +26,7 @@ Welcome to DreamScape! DreamScape is a web based application built using the MER
 
 In order to use this application, navigate to the following link:
 
-https://whispering-crag-58704-755d34513186.herokuapp.com/
+https://dreamscape.fly.dev/
 
 Following this link should bring you to a landing page like the image below:
 ![alt text](client/src/assets/images/Dreamscape_Landing_Page.PNG)
@@ -35,7 +35,7 @@ If you are an existing user, you may sign in from the form provided. Otherwise, 
 
 Once a user is signed in, you will be navigated to your Profile page. The profile page is your main hub for all interaction with the application. You can view stories that you have created directly from this page, name and begin to create new stories yourself, or view publically available stories created by other users.
 
-By adding a new Story Title, you will be prompted to add scenes to your new Story. This will navigate you to the DreamForge. The DreamForge is your tool to creating your mindfullness journey stories. Here you must add images and optionally add text (or select from various options of poems). If you would like to add more than one scene, select the 'Next Scene' button. This will save your scene to your story and allow you to create another scene. Add as many scenes as you would like.
+By adding a new Story Title, you will be prompted to add scenes to your new Story. This will navigate you to the DreamForge. The DreamForge is your tool to creating your mindfulness journey stories. Here you must add images and optionally add text (or select from various options of poems). If you would like to add more than one scene, select the 'Next Scene' button. This will save your scene to your story and allow you to create another scene. Add as many scenes as you would like.
 
 When you have completed the last scene you would like to have on your Story, click the 'Finish Story' button. This will complete your story and return you to your Profile hub. Your new story will appear on your Profile page after a few seconds. Clicking on any of your stories (or on any stories from the Story Well) will allow you to experience the Story.
 
@@ -60,6 +60,8 @@ When you have completed the last scene you would like to have on your Story, cli
 **Client:** React, BootstrapCSS
 
 **Server:** Node, Express, Mongoose
+
+Deployed with fly.io
 
 ## Credits
 
